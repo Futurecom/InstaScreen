@@ -1,2 +1,2 @@
-InstaScreen
+Futurecom InstaScreen
 ===========
