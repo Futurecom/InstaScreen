@@ -1,8 +1,8 @@
 define([//
 'jquery', //
 'tweenMax', //
-'Config', //
-'utils/Preloader', //
+'app/Config', //
+'app/utils/Preloader', //
 ], function( $, TweenMax, Config, Preloader ) {
 
     var App = function( ) {
@@ -180,7 +180,7 @@ define([//
 					arrImages.push(data[nextId].images.standard_resolution.url);
 				});
 			
-				//start loading
+				//start preloading images
 				Preloader.preloadImages(arrImages).done(
 					onDataReady
 				);
@@ -221,9 +221,6 @@ define([//
 
 					console.log("Video done");
 					
-					//clear video
-					video.attr('src', "");
-					
 					clearRefreshTimeout();
 					videoIsPlaying = false;
 					
@@ -235,14 +232,16 @@ define([//
 			}
 		}
 		
-		var getName = function(item){
+		var getName = function(item)
+		{
 			var namebarTitle, namebarText;
 
 			item.find('h1').text(currentItem.user.full_name);
 			item.find('span').text(' - @' + currentItem.user.username);
 		}
 		
-		var getCaption = function(item){
+		var getCaption = function(item)
+		{
 			var date = new Date(currentItem.created_time * 1000);
 			
 			var captureDate = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
@@ -254,7 +253,8 @@ define([//
 		
 		/*------------------------------------------------------*/
 		
-		var animateFeed = function( ) {
+		var animateFeed = function( )
+		{
 			if(isLandscape){
 				arrItems = [item1, item2, item3, item5, item6, item4, item7];
 			}else{
@@ -323,8 +323,7 @@ define([//
     	/*------------------------------------------------------*/
     	// Return
     	
-    	return
-    	{
+    	return {
     		init : init
     	};
     };

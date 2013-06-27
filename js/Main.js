@@ -1,5 +1,5 @@
 // define dependencies
-requirejs.config({
+require.config({
 	paths: {
         jquery: [
              '//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min',
@@ -13,6 +13,7 @@ requirejs.config({
              'lib/gsap/1.9.8/TweenMax.min'
         ]
     },
+    
 	shim: {
 		'tweenMax': {
 			exports: 'TweenMax'
@@ -20,16 +21,12 @@ requirejs.config({
 	}
 });
 
-require(['jquery', 'App'],
-	function($, App) {
-		// document ready
-		$(function()
-		{
-			// Initialize the application view
-			App.init();
-		});
-	}
-);
+require(['jquery', 'app/App'], function($, App) {
+	// start app on dom ready
+	$(function() {
+		App.init();
+	});
+});
 
 require.onError = function( err ) {
 	if ( err.requireType === 'timeout' && window.console && window.console.log ) {
