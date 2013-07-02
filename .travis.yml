@@ -4,9 +4,6 @@
 
 script: ./travis/setup.sh
 
-after_success:
-    - ./travis/after_success.sh
-
 env:
     global:
         - secure: ""
