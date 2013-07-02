@@ -21,7 +21,7 @@ echo '---- Rebase gh-pages ----'
 git rebase master
 
 echo '---- Push the changes ----'
-git push https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_PROJECT_NAME} 2>&1
+git push -f https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_PROJECT_NAME} 2>&1
 
 echo '######################################'
 echo '#                SETUP               #'
