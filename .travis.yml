@@ -1,14 +1,13 @@
-#
-# .travis.yml
-#
+env:
+  global:
+  - GH_USER_NAME: futurecom
+  - GH_PROJECT_NAME: InstaScreen
+  - GIT_AUTHOR_NAME: TravisCI
+  - GIT_AUTHOR_EMAIL: noreply@travis-ci.org
+  - TZ="Europe/Zurich"
+  - secure: |-
+      Oyo4RYMJNS2MHKOabESekf6YSQf2On+P23bAroLe8ZJui3lNrl2pbMxs3mLr
+      OKZJKbqKyaJI90M4OHILtOU10znltJwuoiBk3KrpTNqdUi25h3yzsTV2mVMR
+      C/pj+V2mfb9TO/0oGciR0BuXTCljQBIJUPMSWCoeVVu6P3IIdZ4=
 
 script: ./travis/setup.sh
-
-env:
-    global:
-        - secure: ""
-        - GH_USER_NAME: futurecom
-        - GH_PROJECT_NAME: InstaScreen
-        - GIT_AUTHOR_NAME: "TravisCI"
-        - GIT_AUTHOR_EMAIL: "noreply@travis-ci.org"
-        - TZ="Europe/Zurich"
