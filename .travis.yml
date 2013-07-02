@@ -1,5 +1,4 @@
 script:
-    - echo `pwd`
     - ./travis/setup.sh
 
 env:
