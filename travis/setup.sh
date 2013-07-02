@@ -17,8 +17,8 @@ git config --global user.name $GIT_AUTHOR_NAME
 git config --global user.email $GIT_AUTHOR_EMAIL
 git config --global push.default matching
 
-echo '---- Merge master branch in gh-pages ----'
-git merge master -m "merge master into gh-pages"
+echo '---- Rebase gh-pages ----'
+git rebase master
 
 echo '---- Push the changes ----'
 git push https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_PROJECT_NAME} 2>&1
