@@ -2,7 +2,7 @@ script: ./travis/setup.sh
 
 env:
   global:
-  - GH_USER_NAME: futurecom
+  - GH_USER_NAME: Futurecom
   - GH_PROJECT_NAME: InstaScreen
   - GIT_AUTHOR_NAME: TravisCI
   - GIT_AUTHOR_EMAIL: noreply@travis-ci.org
