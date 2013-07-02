@@ -1,4 +1,6 @@
-script: ./travis/setup.sh
+script:
+    - echo `pwd`
+    - ./travis/setup.sh
 
 env:
   global:
