@@ -1,0 +1,11 @@
+after_success:
+    - ./travis/after_success.sh
+
+env:
+	global:
+		- secure: ""
+		- GH_USER_NAME: futurecom
+        - GH_PROJECT_NAME: InstaScreen
+        - GIT_AUTHOR_NAME: "TravisCI"
+        - GIT_AUTHOR_EMAIL: "noreply@travis-ci.org"
+        - TZ="Europe/Zurich"
