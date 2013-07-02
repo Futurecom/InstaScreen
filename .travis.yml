@@ -1,4 +1,3 @@
-
 script: ./travis/setup.sh
 
 env:
