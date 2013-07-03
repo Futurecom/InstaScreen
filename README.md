@@ -16,7 +16,7 @@ Have fun
 
 ##### Config.js #####
 
-All the important variables are stored in the Confog.js file.
+All the important variables are stored in the Config.js file.
 
 ##### LESS #####
 
