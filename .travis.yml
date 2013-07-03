@@ -1,0 +1,15 @@
+script:
+    - ./travis/setup.sh
+
+env:
+  global:
+  - GH_USER_NAME: Futurecom
+  - GH_PROJECT_NAME: InstaScreen
+  - GIT_AUTHOR_NAME: TravisCI
+  - GIT_AUTHOR_EMAIL: noreply@travis-ci.org
+  - TZ="Europe/Zurich"
+  - CI_HOME=`pwd`/$TRAVIS_REPO_SLUG
+  - secure: |-
+      A5PlHdDZKbVbqv5yntByKtcIHxnNY3skot8RHjYr4U8/8yvAa0WHV6I+Fp/I
+      b12WIaBrCPEZeKbRcn5nixrBHmjyxZQJUJOGanj8Pl1716SccR4hyfFTEK28
+      q6XwiPeaEzLUYF+deH+0FLBRP11UY9CPG4WxfF4GqKwTWN0DLYo=
