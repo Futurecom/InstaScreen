@@ -11,7 +11,7 @@ require.config({
              '//cdnjs.cloudflare.com/ajax/libs/gsap/1.9.8/TweenMax.min',
              // If the CDN location fails, load from this location
              'lib/gsap/1.9.8/TweenMax.min'
-        ]
+        ],
     },
     
 	shim: {
@@ -21,9 +21,10 @@ require.config({
 	}
 });
 
-require(['jquery', 'app/App'], function($, App) {
+require(['jquery', 'app/app'], function($, App) {
 	// start app on dom ready
 	$(function() {
+		//init App
 		App.init();
 	});
 });
