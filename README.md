@@ -14,7 +14,14 @@ Have fun
 
 ### Usage ###
 
-This project uses LESS as a CSS compiler.
+##### Config.js #####
+
+All the important variables are stored in the Confog.js file.
+
+##### LESS #####
+
+To compile LESS into CSS you need to install the Less Compiler.
+Download here: http://lesscss.org/
 
 Install LESS
 ```shell
