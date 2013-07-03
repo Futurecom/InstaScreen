@@ -20,7 +20,7 @@ All the important variables are stored in the Config.js file.
 
 ##### LESS #####
 
-To compile LESS into CSS you need to install the Less Compiler.
+To compile LESS into CSS you need to install the Less Compiler.  
 Download here: http://lesscss.org/
 
 Install LESS
