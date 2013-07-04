@@ -28,9 +28,16 @@ define([//
 		/*-------------------------*/
 
 		/*
-		 * display time of one element
+		 * display time for items
 		 */
-		var refreshTime = 8;
+		var animationInterval = 6;
+
+		/*-------------------------*/
+		
+		/*
+		 * interval time for api calls
+		 */
+		var apiInterval = 30;
 
 		/*------------------------------------------------------*/
 
@@ -48,8 +55,14 @@ define([//
 			return maxItems;
 		};
 
-		var getRefreshTime = function() {
-			return refreshTime;
+		var getAnimationInterval = function() {
+			return animationInterval;
+		};
+
+		/*------------------------------------------------------*/
+		
+		var getApiInterval = function() {
+			return apiInterval;
 		};
 
 		/*------------------------------------------------------*/
@@ -58,7 +71,8 @@ define([//
 			getApiURL : getApiURL,
 			getAccessToken : getAccessToken,
 			getMaxItems : getMaxItems,
-			getRefreshTime : getRefreshTime
+			getAnimationInterval : getAnimationInterval,
+			getApiInterval : getApiInterval
 		};
 	};
 

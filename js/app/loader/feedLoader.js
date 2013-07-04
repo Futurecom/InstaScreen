@@ -1,85 +1,78 @@
 define([//
 'jquery', //
 'app/config', //
-], function( $, Config ) {
+'app/data/data', //
+], function($, Config, Data) {
 
-    var FeedLoader = function()
-    {
-    	var callback;
+	var FeedLoader = function() {
 		var arrItems = [];
-		
-    	var load = function(cb)
-    	{
-    		callback = cb;
-    		loadFeedData();
-    	}
-    	
-    	/*------------------------------------------------------*/
 
-    	var loadFeedData = function( url ) {
-			
+		var callback;
+		var isInitalLoad;
+
+		/*------------------------------------------------------*/
+
+		var load = function(cb, initLoad) {
+			arrItems = [];
+
+			callback = cb;
+			isInitalLoad = initLoad;
+
+			loadFeedData();
+		}
+
+		/*------------------------------------------------------*/
+
+		var loadFeedData = function(url) {
+
 			var apiUrl = (url != undefined) ? url : Config.getApiURL();
 			console.log(apiUrl);
-					
+
 			$.ajax({
-				url: apiUrl,
-				data: {
+				url : apiUrl,
+				data : {
 					access_token : Config.getAccessToken(),
 					count : 30
 				},
-				type: 'GET',
-				dataType: 'jsonp',
-				success: onFeedDataLoaded
+				type : 'GET',
+				dataType : 'jsonp',
+				success : onFeedDataLoaded
 			});
 		}
-		
+
 		var onFeedDataLoaded = function(json) {
-			
-			if(json && json.meta.code == 200)
-			{
+
+			if (json && json.meta.code == 200) {
 				data = json.data;
-				
-				for(var i=0; i<data.length; i++)
-				{
-					if(arrItems.length < Config.getMaxItems())
-					{
-						arrItems.push(data[i]);
+
+				for ( var i = 0; i < data.length; i++) {
+					arrItems.push(data[i]);
+				}
+
+				if (isInitalLoad) {
+					if (arrItems.length < Config.getMaxItems()) {
+						loadFeedData(json.pagination.next_url);
+					} else {
+						// add items to Data Class
+						Data.addItems(arrItems);
+						if(callback) callback();
 					}
-					else
-					{
-						break;
-					}
+				}else{
+					// add new items to Data Class
+					Data.addNewItems(arrItems);
+					if(callback) callback();
 				}
-				
-				console.log(arrItems.length);
-				
-				if(arrItems.length < Config.getMaxItems())
-				{
-					loadFeedData(json.pagination.next_url);
-				}
-				else
-				{
-					callback();
-				}
-			}else{
+			} else {
 				loadFeedData();
 			}
 		}
 
 		/*------------------------------------------------------*/
-		
-		var getArrItems = function() {
-			return arrItems;
+		// Return
+		return {
+			load : load
 		};
-		
-    	/*------------------------------------------------------*/
-    	// Return
-    	
-    	return {
-    		load : load,
-    		getArrItems : getArrItems
-    	};
-    };
-    
-    return new FeedLoader();
+	};
+
+	return new FeedLoader();
 });
