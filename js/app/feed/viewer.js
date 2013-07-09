@@ -25,7 +25,7 @@ define([//
     	
     	var counter = 0;
 		
-		var arrItems = [];
+		var arrCurrentItems = [];		
 		var arrImages = [];
 		
 		var currentItem = {};
@@ -44,38 +44,69 @@ define([//
     		console.log("Viewer.start()");
     		
     		//load feed items
-    		FeedLoader.load(onFeedReady, true);
+    		FeedLoader.load(processFeedData, true);
     	}
     	
-    	var onFeedReady = function()
-    	{
-    		arrItems = Data.getItems();
-    		processFeedData();
-    	} 
-		
     	/*------------------------------------------------------*/
 
 		var processFeedData = function()
 		{
+			var nextId = 0;
+
+			//get items
+			var arrItems = Data.getItems();
+			var arrNewItems = Data.getNewItems();
+
+			console.log("arrItems: " + arrItems.length);
+			console.log("arrNewItems: " + arrNewItems.length);
+			
 			arrImages = [];
 	
-			var nextId = (counter) % arrItems.length;
-			currentItem = arrItems[nextId];
-			
 			items = $(".imageWrapper");
-			items.each(function(i){
-				nextId = (i + counter) % arrItems.length;
-				//add to array
-				arrImages.push(arrItems[nextId].images.standard_resolution.url);
-			});
+			
+			//fill up array
+			while(arrCurrentItems.length < items.length){
+				
+				//get nextId
+				nextId = counter % Config.getMaxItems();
+				
+				//add item to currentItems
+				arrCurrentItems.push(arrItems[nextId]);
+				
+				console.log("nextId: " + nextId);
+				
+				//update counter
+				counter += 1;
+			}
+
+			//get current item
+			currentItem = arrCurrentItems[0];
+
+			//fill in new items
+			for(var i = 0; i < arrNewItems.length; i++){
+				arrCurrentItems.push(arrNewItems[i]);
+				
+				counter += 1;
+			}
+			
+			//remove new items in Data Class
+			Data.removeNewItems();
 		
+			console.log("counter: " + counter);
+			console.log("arrCurrentItems: " + arrCurrentItems.length);
+			
+			//fill preload image array
+			for(var i = 0; i < items.length; i++){
+				arrImages.push(arrCurrentItems[i].images.standard_resolution.url);
+			}
+			
 			//start preloading images
 			ImageLoader.preloadImages(arrImages).done(
-					animateFeed
+				animateFeed
 			);
 			
-			//update counter
-			counter += 1;
+			//remove first element of current array
+			arrCurrentItems.shift();
 		}
 
 		/*------------------------------------------------------*/

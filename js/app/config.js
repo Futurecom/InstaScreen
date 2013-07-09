@@ -8,7 +8,8 @@ define([//
 		 * https://api.instagram.com/v1/users/self/feed/
 		 * http://skolion-services.dev.futurecom.ch/api/instagram/
 		 */
-		var apiURL = "https://api.instagram.com/v1/users/self/feed/";
+		//var apiURL = "https://api.instagram.com/v1/users/self/feed/";
+		var apiURL = "https://api.instagram.com/v1/tags/alps/media/recent";
 
 		/*-------------------------*/
 

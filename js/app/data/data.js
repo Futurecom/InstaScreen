@@ -5,8 +5,10 @@ define([//
 
 	var Data = function() {
 		var items = [];
-		var viewList = [];
+		var newItems = [];
 
+		var itemCounter = 0;
+		
 		/*------------------------------------------------------*/
 
 		var addItems = function(arr) {
@@ -15,6 +17,9 @@ define([//
 					items.push(arr[i]);
 				}
 			}
+			
+			console.log("adding items");
+			items.sort(compareItems);
 		}
 
 		var addNewItems = function(arr) {
@@ -22,19 +27,19 @@ define([//
 				for ( var i = 0; i < arr.length; i++) {
 					for ( var j = 0; j < items.length; j++) {
 
-						var itemComparer = compare(arr[i].id, items[j].id);
+						var itemComparer = compareItems(arr[i], items[j]);
 
 						if (itemComparer == 0) {
 							break;
 						} else {
 							if (itemComparer > 0) {
-								console.log("Added new item: " + arr[i].id);
+								console.log("adding new item: pos: " + j + " id: " + arr[i].id );
 								
-								//add new item to items list
+								//add new item to items
 								items.splice(j, 0, arr[i]);
 								
-								//push new items to viewList
-								viewList.push(arr[i]);
+								//push new items to newItems
+								newItems.push(arr[i]);
 								
 								break;
 							}
@@ -45,21 +50,32 @@ define([//
 				var itemsAdded = Math.abs(items.length - Config.getMaxItems());
 				console.log("Total items added: " + itemsAdded);
 				
-				//delete out of range
+				//update counter
+				itemCounter += itemsAdded;
+				
+				//delete out of range elements
 				items.splice(Config.getMaxItems(), Number.MAX_VALUE);
 			} else {
 				addItems(arr);
 			}
 		}
 
-		var compare = function(itemA, itemB) {
-			if (itemA > itemB) {
+		/*------------------------------------------------------*/
+
+		var compareItems = function(itemA, itemB) {
+			if (itemA.id > itemB.id)
 				return 1;
-			} else if (itemA < itemB) {
+			
+			if (itemA.id < itemB.id)
 				return -1;
-			} else {
-				return 0;
-			}
+			
+			return 0;
+		}
+
+		/*------------------------------------------------------*/
+		
+		var removeNewItems = function() {
+			newItems = [];
 		}
 
 		/*------------------------------------------------------*/
@@ -67,13 +83,20 @@ define([//
 		var getItems = function() {
 			return items;
 		}
-
+		
+		var getNewItems = function() {
+			return newItems;
+		}
+		
 		/*------------------------------------------------------*/
 		// Return
 		return {
 			addItems : addItems,
 			addNewItems : addNewItems,
+			removeNewItems : removeNewItems,
+			//getter
 			getItems : getItems,
+			getNewItems : getNewItems
 		};
 	};
 
