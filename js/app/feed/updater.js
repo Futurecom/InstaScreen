@@ -1,7 +1,8 @@
 define([//
 'app/config', //
+'app/data/data', //
 'app/loader/feedLoader', //
-], function( Config, FeedLoader ) {
+], function( Config, Data, FeedLoader ) {
 
     var Updater = function( ) {
 		
@@ -24,7 +25,7 @@ define([//
     		console.log("Updater.checkForNewItems()");
     		
     		//load feed items
-			FeedLoader.load();
+			FeedLoader.loadNewData(Data.getNewestId());
     	}
 		
     	/*------------------------------------------------------*/

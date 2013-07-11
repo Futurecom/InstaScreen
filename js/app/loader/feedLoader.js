@@ -12,26 +12,37 @@ define([//
 
 		/*------------------------------------------------------*/
 
-		var load = function(cb, initLoad) {
+		var loadData = function(cb, initLoad) {
 			arrItems = [];
 
 			callback = cb;
 			isInitalLoad = initLoad;
 
-			loadFeedData();
+			loadFeedData(Config.getApiURL());
+		}
+
+		var loadNewData = function(minId) {
+			arrItems = [];
+			
+			callback = undefined;
+			isInitalLoad = false;
+			
+			loadFeedData(Config.getApiURL(), minId);
 		}
 
 		/*------------------------------------------------------*/
 
-		var loadFeedData = function(url) {
+		var loadFeedData = function(url, minId) {
 
 			var apiUrl = (url != undefined) ? url : Config.getApiURL();
-			console.log(apiUrl);
+			console.log("url: " + apiUrl);
+			console.log("id: " + minId);
 
 			$.ajax({
 				url : apiUrl,
 				data : {
 					access_token : Config.getAccessToken(),
+					min_id : minId,
 					count : 30
 				},
 				type : 'GET',
@@ -41,7 +52,6 @@ define([//
 		}
 
 		var onFeedDataLoaded = function(json) {
-
 			if (json && json.meta.code == 200) {
 				data = json.data;
 
@@ -70,7 +80,8 @@ define([//
 		/*------------------------------------------------------*/
 		// Return
 		return {
-			load : load
+			loadData : loadData,
+			loadNewData : loadNewData
 		};
 	};
 

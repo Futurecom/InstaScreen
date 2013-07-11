@@ -5,11 +5,17 @@ define([//
 	var Config = function() {
 		/*
 		 * insert the instagram api url here.
-		 * https://api.instagram.com/v1/users/self/feed/
-		 * http://skolion-services.dev.futurecom.ch/api/instagram/
+		 * for example: https://api.instagram.com/v1
 		 */
-		//var apiURL = "https://api.instagram.com/v1/users/self/feed/";
-		var apiURL = "https://api.instagram.com/v1/tags/alps/media/recent";
+		var apiURL = "https://api.instagram.com/v1";
+
+		/*-------------------------*/
+		
+		/*
+		 * insert the instagram api call here.
+		 * for example: /users/self/feed
+		 */
+		var apiCall = "/users/self/feed";
 
 		/*-------------------------*/
 
@@ -29,21 +35,22 @@ define([//
 		/*-------------------------*/
 
 		/*
-		 * display time for items
+		 * display time for items in seconds
+		 * videos ignore the display time if they are longer
 		 */
 		var animationInterval = 6;
 
 		/*-------------------------*/
 		
 		/*
-		 * interval time for api calls
+		 * interval time for api calls in seconds
 		 */
 		var apiInterval = 30;
 
 		/*------------------------------------------------------*/
 
 		var getApiURL = function() {
-			return apiURL;
+			return (apiURL + apiCall);
 		};
 
 		var getAccessToken = function() {

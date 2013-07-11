@@ -44,7 +44,7 @@ define([//
     		console.log("Viewer.start()");
     		
     		//load feed items
-    		FeedLoader.load(processFeedData, true);
+    		FeedLoader.loadData(processFeedData, true);
     	}
     	
     	/*------------------------------------------------------*/
@@ -57,15 +57,12 @@ define([//
 			var arrItems = Data.getItems();
 			var arrNewItems = Data.getNewItems();
 
-			console.log("arrItems: " + arrItems.length);
-			console.log("arrNewItems: " + arrNewItems.length);
-			
 			arrImages = [];
 	
 			items = $(".imageWrapper");
 			
 			//fill up array
-			while(arrCurrentItems.length < items.length){
+			while(arrCurrentItems.length < items.length && arrCurrentItems.length < Config.getMaxItems()){
 				
 				//get nextId
 				nextId = counter % Config.getMaxItems();
@@ -92,8 +89,7 @@ define([//
 			//remove new items in Data Class
 			Data.removeNewItems();
 		
-			console.log("counter: " + counter);
-			console.log("arrCurrentItems: " + arrCurrentItems.length);
+			console.log("counter: " + counter + ", arrItems: " + arrItems.length + ", arrCurrentItems: " + arrCurrentItems.length);
 			
 			//fill preload image array
 			for(var i = 0; i < items.length; i++){

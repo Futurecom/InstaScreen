@@ -6,7 +6,7 @@ define([//
 	var Data = function() {
 		var items = [];
 		var newItems = [];
-
+		
 		var itemCounter = 0;
 		
 		/*------------------------------------------------------*/
@@ -18,33 +18,45 @@ define([//
 				}
 			}
 			
-			console.log("adding items");
-			items.sort(compareItems);
+			//sort items by id
+			items.sort(compareItemsById);
 		}
 
 		var addNewItems = function(arr) {
 			if (items.length > 0) {
-				for ( var i = 0; i < arr.length; i++) {
-					for ( var j = 0; j < items.length; j++) {
+				
+				console.log("old length: " + arr.length);
 
-						var itemComparer = compareItems(arr[i], items[j]);
+				//remove duplicates
+				for ( var i = 0; i < items.length; i++) {
+					for ( var k = 0; k < arr.length; k++) {
+
+						var itemComparer = compareItemsById(items[i], arr[k]);
 
 						if (itemComparer == 0) {
+							arr.splice(k,1);
 							break;
-						} else {
-							if (itemComparer > 0) {
-								console.log("adding new item: pos: " + j + " id: " + arr[i].id );
-								
-								//add new item to items
-								items.splice(j, 0, arr[i]);
-								
-								//push new items to newItems
-								newItems.push(arr[i]);
-								
-								break;
-							}
 						}
 					}
+				}
+				
+				console.log("new length: " + arr.length);
+				
+				
+				//add new item to items
+				for ( var i = 0; i < arr.length; i++) {
+					console.log("adding new item: " + arr[i].id);
+					
+					//add new item to items
+					items.splice(i, 0, arr[i]);
+					
+					//push new items to newItems
+					newItems.push(arr[i]);
+				}
+				
+				if(arr.length > 0){
+					//sort items by id
+					items.sort(compareItemsById);
 				}
 				
 				var itemsAdded = Math.abs(items.length - Config.getMaxItems());
@@ -62,12 +74,12 @@ define([//
 
 		/*------------------------------------------------------*/
 
-		var compareItems = function(itemA, itemB) {
+		var compareItemsById = function(itemA, itemB) {
 			if (itemA.id > itemB.id)
-				return 1;
+				return -1;
 			
 			if (itemA.id < itemB.id)
-				return -1;
+				return 1;
 			
 			return 0;
 		}
@@ -88,6 +100,14 @@ define([//
 			return newItems;
 		}
 		
+		var getNewestId = function() {
+			try{
+				return items[0].id;
+			}catch(e) {
+				return undefined;
+			}
+		}
+		
 		/*------------------------------------------------------*/
 		// Return
 		return {
@@ -96,7 +116,8 @@ define([//
 			removeNewItems : removeNewItems,
 			//getter
 			getItems : getItems,
-			getNewItems : getNewItems
+			getNewItems : getNewItems,
+			getNewestId : getNewestId
 		};
 	};
 
