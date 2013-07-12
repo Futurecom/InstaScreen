@@ -1,16 +1,19 @@
 // define dependencies
 require.config({
+	//version for caching scripts
+	urlArgs: "bust=v-1-0-0",
+	
 	paths: {
         jquery: [
-             '//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min',
+             '//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min',
              // If the CDN location fails, load from this location
-             'lib/jquery/jquery-2.0.2.min'
+             'lib/jquery/jquery-2.0.3.min'
         ],
         
         tweenMax: [
-             '//cdnjs.cloudflare.com/ajax/libs/gsap/1.9.8/TweenMax.min',
+             '//cdnjs.cloudflare.com/ajax/libs/gsap/1.10.0/TweenMax.min',
              // If the CDN location fails, load from this location
-             'lib/gsap/1.9.8/TweenMax.min'
+             //'lib/gsap/1.10.0/TweenMax.min'
         ],
     },
     

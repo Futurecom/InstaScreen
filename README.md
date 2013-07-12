@@ -1,8 +1,8 @@
 Futurecom InstaScreen
 ===========
 
-Displays an Instagram feed for a specific user.
-We built it as a fullscreen web app for a vertical mounted tv screen.
+Displays an Instagram feed for a specific user.	
+We built it as a fullscreen web app for a vertical mounted tv screen. It is kind of responsive (landscape/portrait), but still depends on a certain aspect ratio (16/9 or 16/10).
 
 Have fun
 
