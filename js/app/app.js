@@ -117,6 +117,12 @@ define([//
     	{
     		console.log("App.start()");
     		
+    		//hide loader
+    		TweenMax.to('#loader', 0.5, {delay:1.0, css:{autoAlpha:0}, ease:Linear.easeNone})
+    		
+    		//show content
+    		TweenMax.to('#bodyWrapper', 0.5, {delay:1.5, css:{autoAlpha:1}, ease:Linear.easeNone})
+    		
     		//init classes
             Viewer.start();
     		

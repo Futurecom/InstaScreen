@@ -5,7 +5,8 @@ VIDEO{margin:0;display:block}
 H1{font-weight:700;display:inline-block;margin:0}
 H2{font-weight:700}
 .namebar *{font-size:3.5vw}
-#bodyWrapper{background:#000;border:1px #000 solid;margin-top:-1px;margin-right:-1px}
+#loader{position:fixed;top:50%;left:50%;margin-left:-100px;margin-top:-100px;}
+#bodyWrapper{visibility:hidden;background:#000;border:1px #000 solid;margin-top:-1px;margin-right:-1px}
 .namebar{font-weight:400;position:relative;display:none;background-color:#f3f3f3;border:1px #000 solid;margin-left:-1px;margin-bottom:-1px}.namebar .innerWrapper{display:table-cell;vertical-align:middle;white-space:nowrap;overflow-x:hidden}
 .namebar .coverUp{position:absolute;top:0;right:0;z-index:999;width:50px;height:100%;background:-moz-linear-gradient(left, rgba(243,243,243,0) 0, #f3f3f3 80%, #f3f3f3 100%);background:-webkit-gradient(linear, left top, right top, color-stop(0, rgba(243,243,243,0)), color-stop(80%, #f3f3f3), color-stop(100%, #f3f3f3));background:-webkit-linear-gradient(left, rgba(243,243,243,0) 0, #f3f3f3 80%, #f3f3f3 100%);background:-o-linear-gradient(left, rgba(243,243,243,0) 0, #f3f3f3 80%, #f3f3f3 100%);background:-ms-linear-gradient(left, rgba(243,243,243,0) 0, #f3f3f3 80%, #f3f3f3 100%);background:linear-gradient(to right, rgba(243,243,243,0) 0, #f3f3f3 80%, #f3f3f3 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(243, 243, 243, 0)', endColorstr='#f3f3f3', GradientType=1);}
 #imageBlock{position:relative;overflow:hidden;background-color:#000}

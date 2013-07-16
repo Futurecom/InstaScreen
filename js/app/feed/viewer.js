@@ -185,13 +185,13 @@ define([//
 			
 			var tl = new TimelineMax();
 			tl.add([
-			        	TweenMax.to(arrElements[0], 0.5, {rotationX:90, ease:Expo.easeIn, onComplete:getName, onCompleteParams:[arrElements[0]]}),
-			        	TweenMax.to(arrElements[0], 0.5, {rotationX:0, ease:Expo.easeOut})
+		        	TweenMax.to(arrElements[0], 0.5, {rotationX:90, ease:Expo.easeIn, onComplete:getName, onCompleteParams:[arrElements[0]]}),
+		        	TweenMax.to(arrElements[0], 0.5, {rotationX:0, ease:Expo.easeOut})
 			], "+=0", "sequence", 0 );
 
 			tl.add([
-				        TweenMax.to(arrElements[1], 0.5, {rotationX:90, ease:Expo.easeIn, onComplete:getImage, onCompleteParams:[arrElements[1]]}),
-				        TweenMax.to(arrElements[1], 0.5, {rotationX:0, ease:Expo.easeOut, onComplete:getVideo, onCompleteParams:[arrElements[1]]})
+			        TweenMax.to(arrElements[1], 0.5, {rotationX:90, ease:Expo.easeIn, onComplete:getImage, onCompleteParams:[arrElements[1]]}),
+			        TweenMax.to(arrElements[1], 0.5, {rotationX:0, ease:Expo.easeOut, onComplete:getVideo, onCompleteParams:[arrElements[1]]})
 			], "-=0.9", "sequence", 0 );
 
 			tl.add([
