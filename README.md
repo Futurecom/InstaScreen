@@ -5,10 +5,7 @@ Displays an Instagram feed for a specific user.
 We built it as a fullscreen web app for a vertical mounted tv screen. It is kind of responsive (landscape/portrait), but still depends on a certain aspect ratio (16/9 or 16/10).
 
 Have fun
-
-### License ###
-
-<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">InstaScreen</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+ 
 ### Demo ###
 
 [![Build Status](https://travis-ci.org/Futurecom/InstaScreen.png?branch=travis)](https://travis-ci.org/Futurecom/InstaScreen)
@@ -35,3 +32,17 @@ Compile LESS to CSS
 ```shell
 $ lessc -x main.less main.css
 ```
+
+### Copyright ###
+
+Copyright (c) 2013 Futurecom interactive
+All Rights Reserved.
+
+### License ###
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
