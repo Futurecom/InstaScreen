@@ -148,6 +148,7 @@ define([//
 				videoIsPlaying = true;
 				
 				video.attr('src', currentItem.videos.standard_resolution.url);
+				video.attr('muted', Config.getMuteSound());
 				
 				//add video handlers
 				video.on('error', videoDone);

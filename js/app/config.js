@@ -74,6 +74,13 @@ define([//
 		 */
 		var apiInterval = 30;
 
+		/*-------------------------*/
+		
+		/*
+		 * mute sounds from videos
+		 */
+		var muteSound = false;
+
 		/*------------------------------------------------------*/
 
 		var getApiURL = function() {
@@ -101,13 +108,20 @@ define([//
 		};
 
 		/*------------------------------------------------------*/
+		
+		var getMuteSound = function() {
+			return muteSound;
+		};
+
+		/*------------------------------------------------------*/
 		// Return
 		return {
 			getApiURL : getApiURL,
 			getAccessToken : getAccessToken,
 			getMaxItems : getMaxItems,
 			getAnimationInterval : getAnimationInterval,
-			getApiInterval : getApiInterval
+			getApiInterval : getApiInterval,
+			getMuteSound : getMuteSound
 		};
 	};
 
