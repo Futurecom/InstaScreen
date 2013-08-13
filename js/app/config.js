@@ -36,15 +36,11 @@ define([//
 		 */
 		var apiURL = "https://api.instagram.com/v1";
 
-		/*-------------------------*/
-		
 		/*
 		 * insert the instagram api call here.
 		 * for example: /users/self/feed
 		 */
 		var apiCall = "/users/self/feed";
-
-		/*-------------------------*/
 
 		/*
 		 * insert the required access token. you can get a valid access token
@@ -57,9 +53,7 @@ define([//
 		/*
 		 * max number of items to display before it loops
 		 */
-		var maxItems = 150;
-
-		/*-------------------------*/
+		var maxItems = 101;
 
 		/*
 		 * display time for items in seconds
@@ -67,8 +61,6 @@ define([//
 		 */
 		var animationInterval = 6;
 
-		/*-------------------------*/
-		
 		/*
 		 * interval time for api calls in seconds
 		 */
@@ -80,6 +72,14 @@ define([//
 		 * mute sounds from videos
 		 */
 		var muteSound = false;
+
+		/*-------------------------*/
+
+		/*
+		 * array of tags for blacklisting
+		 * eg: ["food", "cats", "dogs"]
+		 */
+		var blacklistTags = ["foodporn", "dasisterweckung", "shoeshot"];
 
 		/*------------------------------------------------------*/
 
