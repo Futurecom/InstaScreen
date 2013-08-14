@@ -37,9 +37,7 @@ define([//
     	
 		var windowWidth, windowHeight;
     	
-    	var isLandscape;
-    	var isPortrait;
-    	var isPortrait43;
+    	var orientation;
     	var isIOS;
     	
     	var causeRepaintsOn;
@@ -49,26 +47,26 @@ define([//
     	var init = function( ) {
     		console.log("App.init()");
     		
-    		//check for ios
+    		// check for ios
     		isIOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
     		if(isIOS){
     			$('.imageWrapper.large VIDEO').css("display", "none");
     		}
     		
-    		//set window w and h
+    		// set window w and h
     		windowWidth = $(window).width();
     		windowHeight = $(window).height();
     	    
-    		//check orientation
-    		isLandscape = (windowWidth >= windowHeight) ? true : false;
+    		// check orientation
+    		orientation = 0;
     		
     		causeRepaintsOn = $("h1, h2, span");
     		
-    		//set resize listener
+    		// set resize listener
             $(window).on('resize', onResize);
             onResize();
             
-            //start App
+            // start App
     		start();
     	}
     	
@@ -88,75 +86,78 @@ define([//
     		var namebarWidth = windowWidth - 2;
     		var namebarHeight = windowHeight - 2;
     		
-    		//check orientation
-    		isLandscape = (windowWidth >= windowHeight) ? true : false;
-    		isPortrait = (windowHeight >= windowWidth) ? true : false;    		
-    		isPortrait43 = (windowHeight / windowWidth <= (4/3) && windowHeight / windowWidth >= 1.05 ) ? true : false;
-			
-			console.log(isPortrait43);
+    		// check orientation:
+    		// portrait = 0;
+    		// landscape = 1;
+    		// portrait 4:3 = 2;
+    		orientation = 0;
     		
-    		if (isLandscape)
-    		{
-    			// landscape
-    			smallIMG = (contentWidth / 4) - 1;
-    			largeIMGWidth = (smallIMG * 2);
-    			largeIMGHeight = (smallIMG * 2);
-    			
-    			imageBlockWidth = contentWidth;
-    			imageBlockHeight = largeIMGWidth;
-    			
-    			namebarHeight = namebarHeight - largeIMGWidth;
-    			namebarHeight = (namebarHeight > 64) ? namebarHeight : 64;
-    			
-    			$('.infobar.portrait43').css('display', 'none');
-    			$('.infobar.portrait').css('display', 'block');
-    			
-    			$('.infobar').css('width', smallIMG).css('height', smallIMG);
-    		} 
-    		else if (isPortrait43)
-    		{ 
-    			// portrait 4:3
-    			smallIMG = ((contentWidth -1) / 3) ;
-    			largeIMGWidth = (smallIMG * 2) - 1;
-    			largeIMGHeight = (smallIMG * 2) + 1;
-    			
-    			imageBlockWidth = contentWidth;
-    			imageBlockHeight = largeIMGHeight + (smallIMG);
-    			
-    			namebarHeight = windowHeight - (smallIMG * 3);
-    			
-    			$('.infobar.portrait43').css('display', 'block');
-    			$('.infobar.portrait').css('display', 'none');
-    			
-    			infoBar = (smallIMG * 2) -1;
-    			
-    			$('.infobar').css('width', infoBar).css('height', smallIMG);
-    			
-    			$(".imageWrapper[data-id='item_7']").css('display', 'none');
-    		}    		
-    		else
-    		{
-	    		// portrait
-    			smallIMG = (contentWidth / 3) - 1;
-    			largeIMGWidth = namebarWidth;
-    			largeIMGHeight = namebarWidth;
-    			
-    			
-    			imageBlockWidth = contentWidth;
-    			imageBlockHeight = largeIMGHeight + (smallIMG * 2);
-    			
-    			namebarHeight = namebarHeight - largeIMGHeight - (smallIMG * 2);
-    			namebarHeight = (namebarHeight > 62) ? namebarHeight : 62;
-    			
-    			$('.infobar.portrait43').css('display', 'none');
-    			$('.infobar.portrait').css('display', 'block');
-    			
-    			infoBar = (smallIMG * 2) + 1;
-    			
-    			$('.infobar').css('width', infoBar).css('height', smallIMG);
-    			
-    			$(".imageWrapper[data-id='item_7']").css('display', 'block');
-    		}
+    		// check for landscape
+    		if(windowWidth >= windowHeight) orientation = 1;
+    		// check for portrait 4:3
+    		if(windowHeight / windowWidth <= (4/3) && windowHeight / windowWidth >= 1.05 ) orientation = 2;  		
+    		
+			switch(orientation)
+			{
+				case 1:
+					// landscape
+	    			smallIMG = (contentWidth / 4) - 1;
+	    			largeIMGWidth = (smallIMG * 2);
+	    			largeIMGHeight = (smallIMG * 2);
+	    			
+	    			imageBlockWidth = contentWidth;
+	    			imageBlockHeight = largeIMGWidth;
+	    			
+	    			namebarHeight = namebarHeight - largeIMGWidth;
+	    			namebarHeight = (namebarHeight > 64) ? namebarHeight : 64;
+	    			
+	    			$('.infobar.portrait43').css('display', 'none');
+	    			$('.infobar.portrait').css('display', 'block');
+	    			
+	    			$('.infobar').css('width', smallIMG).css('height', smallIMG);
+					break;
+				case 2:
+					// portrait 4:3
+	    			smallIMG = ((contentWidth -1) / 3) ;
+	    			largeIMGWidth = (smallIMG * 2) - 1;
+	    			largeIMGHeight = (smallIMG * 2) + 1;
+	    			
+	    			imageBlockWidth = contentWidth;
+	    			imageBlockHeight = largeIMGHeight + (smallIMG);
+	    			
+	    			namebarHeight = windowHeight - (smallIMG * 3);
+	    			
+	    			$('.infobar.portrait43').css('display', 'block');
+	    			$('.infobar.portrait').css('display', 'none');
+	    			
+	    			infoBar = (smallIMG * 2) -1;
+	    			
+	    			$('.infobar').css('width', infoBar).css('height', smallIMG);
+	    			
+	    			$(".imageWrapper[data-id='item_7']").css('display', 'none');
+					break;
+				default:
+					// portrait
+	    			smallIMG = (contentWidth / 3) - 1;
+	    			largeIMGWidth = namebarWidth;
+	    			largeIMGHeight = namebarWidth;
+	    			
+	    			
+	    			imageBlockWidth = contentWidth;
+	    			imageBlockHeight = largeIMGHeight + (smallIMG * 2);
+	    			
+	    			namebarHeight = namebarHeight - largeIMGHeight - (smallIMG * 2);
+	    			namebarHeight = (namebarHeight > 62) ? namebarHeight : 62;
+	    			
+	    			$('.infobar.portrait43').css('display', 'none');
+	    			$('.infobar.portrait').css('display', 'block');
+	    			
+	    			infoBar = (smallIMG * 2) + 1;
+	    			
+	    			$('.infobar').css('width', infoBar).css('height', smallIMG);
+	    			
+	    			$(".imageWrapper[data-id='item_7']").css('display', 'block');
+			}
 
     		$('#imageBlock').css('width', imageBlockWidth).css('height', imageBlockHeight);		
 
@@ -182,16 +183,16 @@ define([//
     	{
     		console.log("App.start()");
     		
-    		//hide loader
+    		// hide loader
     		TweenMax.to('#loader', 0.5, {delay:1.0, css:{autoAlpha:0}, ease:Linear.easeNone})
     		
-    		//show content
+    		// show content
     		TweenMax.to('#bodyWrapper', 0.5, {delay:1.5, css:{autoAlpha:1}, ease:Linear.easeNone})
     		
-    		//init classes
+    		// init classes
             Viewer.start();
     		
-            //start backgroundupdates
+            // start backgroundupdates
             Updater.start();
     	}
 

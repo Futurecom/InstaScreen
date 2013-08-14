@@ -81,6 +81,9 @@ define([//
 		var onFeedDataLoaded = function(json) {
 			if (json && json.meta.code == 200) {
 				data = json.data;
+				
+				//check for blacklist items
+				
 
 				for ( var i = 0; i < data.length; i++) {
 					arrItems.push(data[i]);

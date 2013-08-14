@@ -37,7 +37,8 @@ define([//
 		var apiURL = "https://api.instagram.com/v1";
 
 		/*
-		 * insert the instagram api call here.
+		 * insert the instagram api endpoint call here.
+		 * list of endpoints can be found here: http://instagram.com/developer/endpoints/
 		 * for example: /users/self/feed
 		 */
 		var apiCall = "/users/self/feed";
