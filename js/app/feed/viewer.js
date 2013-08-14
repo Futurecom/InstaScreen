@@ -203,10 +203,13 @@ define([//
 		{
     		//check orientation
     		var isLandscape = ($(window).width() >= $(window).height()) ? true : false;
+    		var isPortrait43 = ($(window).height() / $(window).width() >= 1.05) ? true : false;
     		var arrElements;
 			
 			if(isLandscape){
 				arrElements = [element1, element2, element3, element5, element6, element4, element7];
+			}else if (isPortrait43){
+				arrElements = [element1, element2, element3, element4, element5, element6, element7];
 			}else{
 				arrElements = [element1, element2, element3, element4, element7, element6, element5];
 			}
