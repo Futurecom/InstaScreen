@@ -41,20 +41,21 @@ define([//
 		 * list of endpoints can be found here: http://instagram.com/developer/endpoints/
 		 * for example: /users/self/feed
 		 */
-		var apiCall = "/users/self/feed";
+		var apiCall = "/users/self/media/liked";
 
 		/*
 		 * insert the required access token. you can get a valid access token
-		 * here: http://instagram.com/developer/authentication
+		 * here: http://futurecom.ch/instascreen
+		 * or here: http://instagram.com/developer/authentication
 		 */
-		var accessToken = "414294402.953c6f7.cde2dd40e16b4bafa48812d3abea429e";
+		var accessToken = "515660266.953c6f7.5d365e1c60a14f67938fcc3577a0fad9";
 
 		/*-------------------------*/
 
 		/*
 		 * max number of items to display before it loops
 		 */
-		var maxItems = 101;
+		var maxItems = 100;
 
 		/*
 		 * display time for items in seconds
@@ -70,17 +71,45 @@ define([//
 		/*-------------------------*/
 		
 		/*
+		 * use priority for new images. (display new images asap)
+		 * default: true
+		 */
+		var prioritizeNewItems = true;
+		
+		/*-------------------------*/
+
+		/*
 		 * mute sounds from videos
+		 * default: false
 		 */
 		var muteSound = false;
 
 		/*-------------------------*/
 
 		/*
-		 * array of tags for blacklisting
-		 * eg: ["food", "cats", "dogs"]
+		 * array of tags for searching in the api
+		 * IMPORTANT: be aware that every tag requires a seperate api call, so use it responsibly
+		 * for example: ["starwars", "jedi", "darkforce"]
 		 */
-		var blacklistTags = ["foodporn", "dasisterweckung", "shoeshot"];
+		var searchTags = [];
+
+		/*
+		 * array of tags for adding the image to the stream 
+		 * for example: ["luke", "yoda", "hansolo"]
+		 */
+		var filterTags = [];
+
+		/*
+		 * array of tags to block images from adding to the stream
+		 * for example: ["sith", "empire", "vader"]
+		 */
+		var blacklistTags = [];
+
+		/*
+		 * max number of tags
+		 * prevents tag spaming/bombing to sort out unrelated pictures
+		 */
+		var maxTagNumber = 5;
 
 		/*------------------------------------------------------*/
 
@@ -110,6 +139,12 @@ define([//
 
 		/*------------------------------------------------------*/
 		
+		var getPrioritizeNewItems = function() {
+			return prioritizeNewItems;
+		};
+
+		/*------------------------------------------------------*/
+		
 		var getMuteSound = function() {
 			return muteSound;
 		};
@@ -122,6 +157,7 @@ define([//
 			getMaxItems : getMaxItems,
 			getAnimationInterval : getAnimationInterval,
 			getApiInterval : getApiInterval,
+			getPrioritizeNewItems : getPrioritizeNewItems,
 			getMuteSound : getMuteSound
 		};
 	};
