@@ -30,10 +30,11 @@ define([//
 'tweenMax', //
 'app/app', //
 'app/config', //
-'app/data/data', //
+'app/data/screenData', //
+'app/data/itemData', //
 'app/loader/feedLoader', //
 'app/loader/imageLoader', //
-], function( $, TweenMax, App, Config, Data, FeedLoader, ImageLoader ) {
+], function( $, TweenMax, App, Config, ScreenData, ItemData, FeedLoader, ImageLoader ) {
 
     var Viewer = function( ) {
     	
@@ -81,8 +82,8 @@ define([//
 			var nextId = 0;
 
 			//get items
-			var arrItems = Data.getItems();
-			var arrNewItems = Data.getNewItems();
+			var arrItems = ItemData.getItems();
+			var arrNewItems = ItemData.getNewItems();
 
 			arrImages = [];
 	
@@ -114,7 +115,7 @@ define([//
 			}
 			
 			//remove new items in Data Class
-			Data.removeNewItems();
+			ItemData.removeNewItems();
 		
 			console.log("counter: " + counter + ", arrItems: " + arrItems.length + ", arrCurrentItems: " + arrCurrentItems.length);
 			
@@ -142,7 +143,7 @@ define([//
 		
 		var getVideo = function(element)
 		{
-			if(currentItem.videos)
+			if(!ScreenData.getIsIOS() && currentItem.videos)
 			{
 				console.log("start Video");
 				videoIsPlaying = true;
@@ -202,16 +203,22 @@ define([//
 		var animateFeed = function( )
 		{
     		//check orientation
-    		var isLandscape = ($(window).width() >= $(window).height()) ? true : false;
-    		var isPortrait43 = ($(window).height() / $(window).width() >= 1.05) ? true : false;
+			var orientation = ScreenData.getOrientation();
     		var arrElements;
 			
-			if(isLandscape){
-				arrElements = [element1, element2, element3, element5, element6, element4, element7];
-			}else if (isPortrait43){
-				arrElements = [element1, element2, element3, element4, element5, element6, element7];
-			}else{
-				arrElements = [element1, element2, element3, element4, element7, element6, element5];
+    		switch(orientation)
+			{
+				case 1:
+					// landscape
+					arrElements = [element1, element2, element3, element5, element6, element4, element7];
+					break;
+				case 2:
+					// portrait 4:3
+					arrElements = [element1, element2, element3, element4, element5, element6, element7];
+					break;
+				default:
+					// portrait
+					arrElements = [element1, element2, element3, element4, element7, element6, element5];						
 			}
 			
 			var tl = new TimelineMax();

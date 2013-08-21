@@ -27,9 +27,9 @@
  */
 define([//
 'app/config', //
-'app/data/data', //
+'app/data/itemData', //
 'app/loader/feedLoader', //
-], function( Config, Data, FeedLoader ) {
+], function( Config, ItemData, FeedLoader ) {
 
     var Updater = function( ) {
 		
@@ -52,7 +52,7 @@ define([//
     		console.log("Updater.checkForNewItems()");
     		
     		//load feed items
-			FeedLoader.loadNewData(Data.getNewestId());
+			FeedLoader.loadNewData(ItemData.getNewestId());
     	}
 		
     	/*------------------------------------------------------*/

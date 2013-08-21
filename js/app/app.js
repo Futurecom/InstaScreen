@@ -29,16 +29,12 @@ define([//
 'jquery', //
 'tweenMax', //
 'app/config', //
+'app/data/screenData', //
 'app/feed/updater', //
 'app/feed/viewer', //
-], function( $, TweenMax, Config, Updater, Viewer ) {
+], function( $, TweenMax, Config, ScreenData, Updater, Viewer ) {
 
     var App = function( ) {
-    	
-		var windowWidth, windowHeight;
-    	
-    	var orientation;
-    	var isIOS;
     	
     	var causeRepaintsOn;
 
@@ -48,17 +44,17 @@ define([//
     		console.log("App.init()");
     		
     		// check for ios
-    		isIOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
+    		var isIOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
     		if(isIOS){
     			$('.imageWrapper.large VIDEO').css("display", "none");
     		}
     		
+    		// set iOS
+    		ScreenData.setIsIOS(isIOS);
+    		
     		// set window w and h
-    		windowWidth = $(window).width();
-    		windowHeight = $(window).height();
-    	    
-    		// check orientation
-    		orientation = 0;
+    		ScreenData.setWindowWidth($(window).width());
+    		ScreenData.setWindowHeight($(window).height());
     		
     		causeRepaintsOn = $("h1, h2, span");
     		
@@ -74,12 +70,12 @@ define([//
     	
     	var onResize = function()
     	{
-    		windowWidth = $(window).width();
-    		windowHeight = $(window).height();
-
     		var smallIMG, largeIMGWidth, largeIMGHeight;
     		var imageBlockWidth, imageBlockHeight;
     	    
+    		var windowWidth = $(window).width();
+    		var windowHeight = $(window).height();
+    		
     		var contentWidth = windowWidth - 1;
     		var contentHeight = windowHeight - 1;
     		
@@ -90,12 +86,17 @@ define([//
     		// portrait = 0;
     		// landscape = 1;
     		// portrait 4:3 = 2;
-    		orientation = 0;
+    		var orientation = 0;
     		
     		// check for landscape
     		if(windowWidth >= windowHeight) orientation = 1;
     		// check for portrait 4:3
     		if(windowHeight / windowWidth <= (4/3) && windowHeight / windowWidth >= 1.05 ) orientation = 2;  		
+    		
+    		//set data
+    		ScreenData.setWindowWidth(windowWidth);
+    		ScreenData.setWindowHeight(windowHeight);
+    		ScreenData.setOrientation(orientation);
     		
 			switch(orientation)
 			{
@@ -118,7 +119,7 @@ define([//
 					break;
 				case 2:
 					// portrait 4:3
-	    			smallIMG = ((contentWidth -1) / 3) ;
+	    			smallIMG = ((contentWidth -1) / 3);
 	    			largeIMGWidth = (smallIMG * 2) - 1;
 	    			largeIMGHeight = (smallIMG * 2) + 1;
 	    			
@@ -130,7 +131,7 @@ define([//
 	    			$('.infobar.portrait43').css('display', 'block');
 	    			$('.infobar.portrait').css('display', 'none');
 	    			
-	    			infoBar = (smallIMG * 2) -1;
+	    			infoBar = (smallIMG * 2) - 1;
 	    			
 	    			$('.infobar').css('width', infoBar).css('height', smallIMG);
 	    			
@@ -141,7 +142,6 @@ define([//
 	    			smallIMG = (contentWidth / 3) - 1;
 	    			largeIMGWidth = namebarWidth;
 	    			largeIMGHeight = namebarWidth;
-	    			
 	    			
 	    			imageBlockWidth = contentWidth;
 	    			imageBlockHeight = largeIMGHeight + (smallIMG * 2);
@@ -159,7 +159,7 @@ define([//
 	    			$(".imageWrapper[data-id='item_7']").css('display', 'block');
 			}
 
-    		$('#imageBlock').css('width', imageBlockWidth).css('height', imageBlockHeight);		
+    		$('#imageBlock').css('width', imageBlockWidth).css('height', imageBlockHeight);
 
     		$('.namebar').css('width', namebarWidth).css('height', namebarHeight);
     		$('.namebar .innerWrapper').css('height', namebarHeight);

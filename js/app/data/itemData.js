@@ -30,7 +30,7 @@ define([//
 'app/config', //
 ], function($, Config) {
 
-	var Data = function() {
+	var ItemData = function() {
 		var items = [];
 		var newItems = [];
 		
@@ -68,7 +68,6 @@ define([//
 				}
 				
 				console.log("new length: " + arr.length);
-				
 				
 				//add new item to items
 				for ( var i = 0; i < arr.length; i++) {
@@ -148,5 +147,5 @@ define([//
 		};
 	};
 
-	return new Data();
+	return new ItemData();
 });

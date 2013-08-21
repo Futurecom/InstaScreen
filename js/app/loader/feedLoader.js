@@ -28,8 +28,8 @@
 define([//
 'jquery', //
 'app/config', //
-'app/data/data', //
-], function($, Config, Data) {
+'app/data/itemData', //
+], function($, Config, ItemData) {
 
 	var FeedLoader = function() {
 		var arrItems = [];
@@ -82,7 +82,7 @@ define([//
 			if (json && json.meta.code == 200) {
 				data = json.data;
 				
-				//check for blacklist items
+				//TODO check for blacklist items
 				
 
 				for ( var i = 0; i < data.length; i++) {
@@ -90,16 +90,16 @@ define([//
 				}
 
 				if (isInitalLoad) {
-					if (arrItems.length < Config.getMaxItems()) {
+					if (!jQuery.isEmptyObject(json.pagination) && arrItems.length < Config.getMaxItems()) {
 						loadFeedData(json.pagination.next_url);
 					} else {
 						// add items to Data Class
-						Data.addItems(arrItems);
+						ItemData.addItems(arrItems);
 						if(callback) callback();
 					}
 				}else{
 					// add new items to Data Class
-					Data.addNewItems(arrItems);
+					ItemData.addNewItems(arrItems);
 					if(callback) callback();
 				}
 			} else {
