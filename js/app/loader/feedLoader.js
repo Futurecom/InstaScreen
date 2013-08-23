@@ -85,12 +85,13 @@ define([//
 			if (json && json.meta.code == 200) {
 				data = json.data;
 				
-				//TODO check for blacklist items
-				
-
-				for ( var i = 0; i < data.length; i++)
+				for ( var i = 0; i < data.length; i++ )
 				{
-					arrItems.push(data[i]);
+					if(isInTagLimit(data[i]))
+					{
+						if(!isBlacklisted(data[i]))
+							arrItems.push(data[i]);				
+					}
 				}
 
 				if (isInitalLoad)
@@ -119,6 +120,32 @@ define([//
 			}
 		}
 
+		/*------------------------------------------------------*/
+
+		var isInTagLimit = function(item)
+		{
+			if(Config.getMaxTagNumber() > -1 && item.tags.length > Config.getMaxTagNumber())
+				return false;
+			
+			return true;
+		}
+		
+		var isBlacklisted = function(item)
+		{
+			var blacklist = Config.getBlacklistTags();
+			
+			for( var i = 0; i < blacklist.length; i++ )
+			{
+				if( $.inArray(blacklist[i], item.tags) != -1 )
+				{
+					console.log("found Blacklist Tag:" + blacklist[i]);
+					return true;
+				}
+			}	
+
+			return false;
+		}
+		
 		/*------------------------------------------------------*/
 		// Return
 		return {

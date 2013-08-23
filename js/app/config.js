@@ -102,13 +102,13 @@ define([//
 		 * array of tags to block images from adding to the stream for example:
 		 * ["sith", "empire", "vader"]
 		 */
-		var blacklistTags = [];
+		var blacklistTags = ["bmw", "ford", "mercedes", "ferrari", "hermes", "gucci", "justinbieber"];
 
 		/*
-		 * max number of tags prevents tag spaming/bombing to sort out unrelated
-		 * pictures
+		 * max number of tags prevents tag spaming/bombing to sort out unrelated pictures
+		 * -1 = unlimited
 		 */
-		var maxTagNumber = 5;
+		var maxTagNumber = 20;
 
 		/*------------------------------------------------------*/
 
@@ -155,6 +155,19 @@ define([//
 			return muteSound;
 		};
 
+		
+		/*------------------------------------------------------*/
+
+		var getBlacklistTags = function()
+		{
+			return blacklistTags;
+		}
+		
+		var getMaxTagNumber = function()
+		{
+			return maxTagNumber;
+		}
+		
 		/*------------------------------------------------------*/
 		// Return
 		return {
@@ -164,7 +177,9 @@ define([//
 			getAnimationInterval : getAnimationInterval,
 			getApiInterval : getApiInterval,
 			getPrioritizeNewItems : getPrioritizeNewItems,
-			getMuteSound : getMuteSound
+			getMuteSound : getMuteSound,
+			getBlacklistTags : getBlacklistTags,
+			getMaxTagNumber : getMaxTagNumber
 		};
 	};
 
