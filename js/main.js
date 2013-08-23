@@ -59,9 +59,10 @@ require(['jquery', 'app/app'], function($, App) {
 });
 
 require.onError = function( err ) {
-	if ( err.requireType === 'timeout' && window.console && window.console.log ) {
+	if ( err.requireType === 'timeout' && window.console && window.console.log )
+	{
 		console.log('modules: ' + err.requireModules);
-    }
+	}
 
 	throw err;
 };

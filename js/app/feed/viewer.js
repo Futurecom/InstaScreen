@@ -90,8 +90,8 @@ define([//
 			items = $(".imageWrapper");
 			
 			//fill up array
-			while(arrCurrentItems.length < items.length && arrCurrentItems.length < Config.getMaxItems()){
-				
+			while(arrCurrentItems.length < items.length && arrCurrentItems.length < Config.getMaxItems())
+			{
 				//get nextId
 				nextId = counter % Config.getMaxItems();
 				
@@ -108,7 +108,8 @@ define([//
 			currentItem = arrCurrentItems[0];
 
 			//fill in new items
-			for(var i = 0; i < arrNewItems.length; i++){
+			for(var i = 0; i < arrNewItems.length; i++)
+			{
 				arrCurrentItems.push(arrNewItems[i]);
 				
 				counter += 1;
@@ -120,7 +121,8 @@ define([//
 			console.log("counter: " + counter + ", arrItems: " + arrItems.length + ", arrCurrentItems: " + arrCurrentItems.length);
 			
 			//fill preload image array
-			for(var i = 0; i < items.length; i++){
+			for(var i = 0; i < items.length; i++)
+			{
 				arrImages.push(arrCurrentItems[i].images.standard_resolution.url);
 			}
 			

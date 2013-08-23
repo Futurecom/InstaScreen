@@ -14,8 +14,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  * 
- * Contact Information: Futurecom interactive Hardturmstrasse 133 Postfach 8037
- * Zurich
+ * Contact Information:
+ * Futurecom interactive
+ * Hardturmstrasse 133
+ * Postfach
+ * 8037 Zurich
  * 
  * www.futurecom.ch
  * 
@@ -24,10 +27,10 @@
 define([//
 'jquery', //
 'app/config', //
-], function($, Config) {
-
-	var ScreenData = function() {
-
+], function($, Config)
+{
+	var ScreenData = function()
+	{
 		var windowWidth;
 		var windowHeight;
 
@@ -36,44 +39,52 @@ define([//
 
 		/*------------------------------------------------------*/
 
-		var getWindowWidth = function() {
+		var getWindowWidth = function()
+		{
 			return windowWidth;
 		}
 
-		var setWindowWidth = function(value) {
+		var setWindowWidth = function(value)
+		{
 			windowWidth = value;
 		}
-		
+
 		/*-------------------------*/
 
-		var getWindowHeight = function() {
+		var getWindowHeight = function()
+		{
 			return windowHeight;
 		}
-		
-		var setWindowHeight = function(value) {
+
+		var setWindowHeight = function(value)
+		{
 			windowHeight = value;
 		}
 
 		/*-------------------------*/
-		
-		var getOrientation = function() {
+
+		var getOrientation = function()
+		{
 			return orientation;
 		}
-		
-		var setOrientation = function(value) {
+
+		var setOrientation = function(value)
+		{
 			orientation = value;
 		}
-		
+
 		/*-------------------------*/
-		
-		var getIsIOS = function() {
+
+		var getIsIOS = function()
+		{
 			return isIOS;
 		}
-		
-		var setIsIOS = function(value) {
+
+		var setIsIOS = function(value)
+		{
 			isIOS = value;
 		}
-		
+
 		/*------------------------------------------------------*/
 		// Return
 		return {

@@ -39,7 +39,8 @@ define([//
 
 		/*------------------------------------------------------*/
 
-		var loadData = function(cb, initLoad) {
+		var loadData = function(cb, initLoad)
+		{
 			arrItems = [];
 
 			callback = cb;
@@ -48,7 +49,8 @@ define([//
 			loadFeedData(Config.getApiURL());
 		}
 
-		var loadNewData = function(minId) {
+		var loadNewData = function(minId)
+		{
 			arrItems = [];
 			
 			callback = undefined;
@@ -59,8 +61,8 @@ define([//
 
 		/*------------------------------------------------------*/
 
-		var loadFeedData = function(url, minId) {
-
+		var loadFeedData = function(url, minId)
+		{
 			var apiUrl = (url != undefined) ? url : Config.getApiURL();
 			console.log("url: " + apiUrl);
 			console.log("id: " + minId);
@@ -78,31 +80,41 @@ define([//
 			});
 		}
 
-		var onFeedDataLoaded = function(json) {
+		var onFeedDataLoaded = function(json)
+		{
 			if (json && json.meta.code == 200) {
 				data = json.data;
 				
 				//TODO check for blacklist items
 				
 
-				for ( var i = 0; i < data.length; i++) {
+				for ( var i = 0; i < data.length; i++)
+				{
 					arrItems.push(data[i]);
 				}
 
-				if (isInitalLoad) {
-					if (!jQuery.isEmptyObject(json.pagination) && arrItems.length < Config.getMaxItems()) {
+				if (isInitalLoad)
+				{
+					if (!jQuery.isEmptyObject(json.pagination) && arrItems.length < Config.getMaxItems())
+					{
 						loadFeedData(json.pagination.next_url);
-					} else {
+					}
+					else
+					{
 						// add items to Data Class
 						ItemData.addItems(arrItems);
 						if(callback) callback();
 					}
-				}else{
+				}
+				else
+				{
 					// add new items to Data Class
 					ItemData.addNewItems(arrItems);
 					if(callback) callback();
 				}
-			} else {
+			}
+			else
+			{
 				loadFeedData();
 			}
 		}
