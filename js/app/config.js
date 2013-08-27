@@ -32,17 +32,19 @@ define([//
 	var Config = function()
 	{
 		/*
-		 * insert the instagram api url here. for example:
-		 * https://api.instagram.com/v1
+		 * insert the instagram api url here.
+		 * for example: https://api.instagram.com/v1
 		 */
 		var apiURL = "https://api.instagram.com/v1";
 
 		/*
 		 * insert the instagram api endpoint call here. list of endpoints can be
-		 * found here: http://instagram.com/developer/endpoints/ for example:
+		 * found here: http://instagram.com/developer/endpoints/
+		 * for example:
 		 * /users/self/feed
+		 * /users/self/media/liked
 		 */
-		var apiCall = "/users/self/media/liked";
+		var apiCall = "/tags/audi/media/recent";
 
 		/*
 		 * insert the required access token. you can get a valid access token
@@ -62,7 +64,7 @@ define([//
 		 * display time for items in seconds videos ignore the display time if
 		 * they are longer
 		 */
-		var animationInterval = 6;
+		var animationInterval = 3;
 
 		/*
 		 * interval time for api calls in seconds
@@ -74,6 +76,7 @@ define([//
 		/*
 		 * use priority for new images. (display new images asap) default: true
 		 */
+		/* NOT YET IMPLEMENTED */
 		var prioritizeNewItems = true;
 
 		/*-------------------------*/
@@ -86,26 +89,29 @@ define([//
 		/*-------------------------*/
 
 		/*
-		 * array of tags for searching in the api IMPORTANT: be aware that every
-		 * tag requires a seperate api call, so use it responsibly for example:
-		 * ["starwars", "jedi", "darkforce"]
+		 * array of tags for searching in the api.
+		 * IMPORTANT: be aware that every tag requires a seperate api call, so use it responsibly.
+		 * for example: ["starwars", "jedi", "darkforce"]
 		 */
+		/* NOT YET IMPLEMENTED */
 		var searchTags = [];
 
 		/*
-		 * array of tags for adding the image to the stream for example:
-		 * ["luke", "yoda", "hansolo"]
+		 * array of tags to filter the stream.
+		 * needs to match one or more tags for adding the image to the stream.
+		 * if array is empty then the filter is ignored.
+		 * for example: ["luke", "yoda", "hansolo"]
 		 */
-		var filterTags = [];
+		var filterTags = ["a1", "a3", "s3", "rs3", "a4", "s4", "rs4", "a5", "s5", "rs5", "a6", "a7", "a8", "q3", "q5", "q7", "r8"];
 
 		/*
-		 * array of tags to block images from adding to the stream for example:
-		 * ["sith", "empire", "vader"]
+		 * array of tags to block images from adding to the stream.
+		 * for example: ["sith", "empire", "vader"]
 		 */
 		var blacklistTags = ["bmw", "ford", "mercedes", "ferrari", "hermes", "gucci", "justinbieber"];
 
 		/*
-		 * max number of tags prevents tag spaming/bombing to sort out unrelated pictures
+		 * max number of tags prevents tag spaming/bombing to sort out unrelated pictures.
 		 * -1 = unlimited
 		 */
 		var maxTagNumber = 20;
@@ -158,6 +164,11 @@ define([//
 		
 		/*------------------------------------------------------*/
 
+		var getFilterTags = function()
+		{
+			return filterTags;
+		}
+
 		var getBlacklistTags = function()
 		{
 			return blacklistTags;
@@ -178,6 +189,7 @@ define([//
 			getApiInterval : getApiInterval,
 			getPrioritizeNewItems : getPrioritizeNewItems,
 			getMuteSound : getMuteSound,
+			getFilterTags : getFilterTags,
 			getBlacklistTags : getBlacklistTags,
 			getMaxTagNumber : getMaxTagNumber
 		};
