@@ -31,7 +31,8 @@ define([//
 'app/data/itemData', //
 ], function($, Config, ItemData) {
 
-	var FeedLoader = function() {
+	var FeedLoader = function()
+	{
 		var arrItems = [];
 
 		var callback;
@@ -87,10 +88,18 @@ define([//
 				
 				for ( var i = 0; i < data.length; i++ )
 				{
+					//check for tag limit
 					if(isInTagLimit(data[i]))
 					{
-						if(!isBlacklisted(data[i]))
-							arrItems.push(data[i]);				
+						//check for blacklist items
+						if(!isInBlacklist(data[i]))
+						{
+							//check for subfilter items
+							if(isInFilterlist(data[i]))
+							{
+								arrItems.push(data[i]);				
+							}								
+						}
 					}
 				}
 
@@ -130,20 +139,42 @@ define([//
 			return true;
 		}
 		
-		var isBlacklisted = function(item)
+		var isInBlacklist = function(item)
 		{
-			var blacklist = Config.getBlacklistTags();
+			var list = Config.getBlacklistTags();
 			
-			for( var i = 0; i < blacklist.length; i++ )
+			for( var i = 0; i < list.length; i++ )
 			{
-				if( $.inArray(blacklist[i], item.tags) != -1 )
+				if( $.inArray(list[i], item.tags) != -1 )
 				{
-					console.log("found Blacklist Tag:" + blacklist[i]);
+					console.log("found Blacklist Tag: " + list[i] + " -> dispose item");
 					return true;
 				}
 			}	
 
 			return false;
+		}
+
+		var isInFilterlist = function(item)
+		{
+			var list = Config.getFilterTags();
+			
+			if( list.length > 0 )
+			{
+				for( var i = 0; i < list.length; i++ )
+				{	
+					if( $.inArray(list[i], item.tags) != -1 )
+					{
+						console.log("found Filter Tag: " + list[i]);
+						return true;
+					}
+				}
+				
+				console.log("found no Filter Tag -> dispose item");
+				return false;
+			}
+			
+			return true;
 		}
 		
 		/*------------------------------------------------------*/
