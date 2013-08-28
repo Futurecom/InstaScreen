@@ -196,7 +196,17 @@ define([//
 			var captureDate = date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
 			element.find('h2').text(captureDate);
 			
-			var caption = (currentItem.caption != null) ? currentItem.caption.text : "...";
+			var caption = "...";
+			
+			if(currentItem.caption != null)
+			{
+				caption = currentItem.caption.text;
+			}
+			else if(currentItem.location != null && currentItem.location.name != null)
+			{
+				caption = currentItem.location.name; 
+			}
+			
 			element.find('span').text(caption);
 		}
 		
