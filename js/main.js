@@ -43,9 +43,9 @@ require.config({
         ],
         
         tweenMax: [
-             '//cdnjs.cloudflare.com/ajax/libs/gsap/1.10.2/TweenMax.min',
+             '//cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min',
              // If the CDN location fails, load from this location
-             'lib/gsap/1.10.2/TweenMax.min'
+             'lib/gsap/1.10.3/TweenMax.min'
         ],
     },
     
