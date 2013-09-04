@@ -50,29 +50,27 @@ define([//
 			loadFeedData(Config.getApiURL());
 		}
 
-		var loadNewData = function(minId)
+		var loadNewData = function()
 		{
 			arrItems = [];
 			
 			callback = undefined;
 			isInitalLoad = false;
 			
-			loadFeedData(Config.getApiURL(), minId);
+			loadFeedData(Config.getApiURL());
 		}
 
 		/*------------------------------------------------------*/
 
-		var loadFeedData = function(url, minId)
+		var loadFeedData = function(url)
 		{
 			var apiUrl = (url != undefined) ? url : Config.getApiURL();
 			console.log("url: " + apiUrl);
-			console.log("id: " + minId);
 
 			$.ajax({
 				url : apiUrl,
 				data : {
 					access_token : Config.getAccessToken(),
-					min_id : minId,
 					count : 30
 				},
 				type : 'GET',
@@ -147,7 +145,7 @@ define([//
 			{
 				if( $.inArray(list[i], item.tags) != -1 )
 				{
-					console.log("found Blacklist Tag: " + list[i] + " -> dispose item");
+					//console.log("found Blacklist Tag: " + list[i] + " -> dispose item");
 					return true;
 				}
 			}	
@@ -165,12 +163,12 @@ define([//
 				{	
 					if( $.inArray(list[i], item.tags) != -1 )
 					{
-						console.log("found Filter Tag: " + list[i]);
+						//console.log("found Filter Tag: " + list[i]);
 						return true;
 					}
 				}
 				
-				console.log("found no Filter Tag -> dispose item");
+				//console.log("found no Filter Tag -> dispose item");
 				return false;
 			}
 			

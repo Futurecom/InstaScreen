@@ -26,8 +26,9 @@
  */
 define([//
 'jquery', //
+'lodash', //
 'app/config', //
-], function($, Config)
+], function($, _, Config)
 {
 	var ItemData = function()
 	{
@@ -56,42 +57,56 @@ define([//
 		{
 			if (items.length > 0)
 			{
-				console.log("old length: " + arr.length);
+				console.log("arr length: " + arr.length);
 
+				//add new items to items
+				items = items.concat(arr);
+				
+				//sort items
+				items.sort(compareItemsById);
+				
+				
+				console.log("items length 1: " + items.length);
+				
 				// remove duplicates
-				for ( var i = 0; i < items.length; i++)
-				{
-					for ( var k = 0; k < arr.length; k++)
-					{
-						var itemComparer = compareItemsById(items[i], arr[k]);
+				items = _.uniq(items, 'id');
+				
+				console.log("items length 2: " + items.length);
+				
+				
+//				for ( var i = 0; i < items.length; i++)
+//				{
+//					var duplicateChecker = $.inArray(items[i], arr);
+//					
+//					console.log("Check for dups: " + duplicateChecker);
+//					
+//					if( duplicateChecker != -1 )
+//					{
+//						arr.splice(duplicateChecker, 1);
+//					}
+//				}
 
-						if (itemComparer == 0)
-						{
-							arr.splice(k, 1);
-							break;
-						}
-					}
-				}
+//				console.log("new length: " + arr.length);
+//
+//				// add new item to items
+//				for ( var i = 0; i < arr.length; i++)
+//				{
+//					console.log("adding new item: " + arr[i].id);
+//
+//					// add new item to items
+//					items.splice(i, 0, arr[i]);
+//
+//					// push new items to newItems
+//					newItems.push(arr[i]);
+//				}
 
-				console.log("new length: " + arr.length);
-
-				// add new item to items
-				for ( var i = 0; i < arr.length; i++)
-				{
-					console.log("adding new item: " + arr[i].id);
-
-					// add new item to items
-					items.splice(i, 0, arr[i]);
-
-					// push new items to newItems
-					newItems.push(arr[i]);
-				}
-
-				if (arr.length > 0)
-				{
-					// sort items by id
-					items.sort(compareItemsById);
-				}
+//				if (arr.length > 0)
+//				{
+//					// sort items by id
+//					items.sort(compareItemsById);
+//				}
+//				
+//				console.log(newItems);
 
 				var itemsAdded = Math.abs(items.length - Config.getMaxItems());
 				console.log("Total items added: " + itemsAdded);
@@ -140,18 +155,6 @@ define([//
 			return newItems;
 		}
 
-		var getNewestId = function()
-		{
-			try
-			{
-				return items[0].id;
-			}
-			catch (e)
-			{
-				return undefined;
-			}
-		}
-
 		/*------------------------------------------------------*/
 		// Return
 		return {
@@ -160,8 +163,7 @@ define([//
 			removeNewItems : removeNewItems,
 			// getter
 			getItems : getItems,
-			getNewItems : getNewItems,
-			getNewestId : getNewestId
+			getNewItems : getNewItems
 		};
 	};
 

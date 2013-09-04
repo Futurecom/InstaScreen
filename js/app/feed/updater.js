@@ -51,7 +51,7 @@ define([//
 			console.log("Updater.checkForNewItems()");
 
 			// load feed items
-			FeedLoader.loadNewData(ItemData.getNewestId());
+			FeedLoader.loadNewData();
 		}
 
 		/*------------------------------------------------------*/

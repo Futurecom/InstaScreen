@@ -40,10 +40,15 @@ define([//
 		/*
 		 * insert the instagram api endpoint call here. list of endpoints can be
 		 * found here: http://instagram.com/developer/endpoints/
-		 * for example:
+		 * tested endpoint calls:
 		 * /users/self/feed
 		 * /users/self/media/liked
+		 * /users/{userid}/media/recent
+		 * /tags/{tagname}/media/recent
+		 * /locations/{locationid}/media/recent
+		 * /media/popular
 		 */
+//		var apiCall = "/users/self/feed";
 		var apiCall = "/tags/audi/media/recent";
 
 		/*
@@ -51,6 +56,7 @@ define([//
 		 * here: http://futurecom.ch/instascreen or here:
 		 * http://instagram.com/developer/authentication
 		 */
+//		var accessToken = "414294402.953c6f7.cde2dd40e16b4bafa48812d3abea429e";
 		var accessToken = "515660266.953c6f7.5d365e1c60a14f67938fcc3577a0fad9";
 
 		/*-------------------------*/
@@ -61,8 +67,8 @@ define([//
 		var maxItems = 100;
 
 		/*
-		 * display time for items in seconds videos ignore the display time if
-		 * they are longer
+		 * display time for items in seconds.
+		 * videos ignore the display time if they are longer
 		 */
 		var animationInterval = 3;
 
@@ -102,12 +108,14 @@ define([//
 		 * if array is empty then the filter is ignored.
 		 * for example: ["luke", "yoda", "hansolo"]
 		 */
+//		var filterTags = [];
 		var filterTags = ["a1", "a3", "s3", "rs3", "a4", "s4", "rs4", "a5", "s5", "rs5", "a6", "a7", "a8", "q3", "q5", "q7", "r8"];
 
 		/*
 		 * array of tags to block images from adding to the stream.
 		 * for example: ["sith", "empire", "vader"]
 		 */
+//		var blacklistTags = ["shoeshot", "dasisterweckung", "ilovemychurch"];
 		var blacklistTags = ["bmw", "ford", "mercedes", "ferrari", "hermes", "gucci", "justinbieber"];
 
 		/*
