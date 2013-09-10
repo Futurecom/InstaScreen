@@ -29,7 +29,8 @@ define([//
 'jquery', //
 'app/config', //
 'app/data/itemData', //
-], function($, Config, ItemData) {
+'app/feed/filter', //
+], function($, Config, ItemData, Filter) {
 
 	var FeedLoader = function()
 	{
@@ -87,19 +88,26 @@ define([//
 				for ( var i = 0; i < data.length; i++ )
 				{
 					//check for tag limit
-					if(isInTagLimit(data[i]))
+					if(Filter.isInTagLimit(data[i]))
 					{
-						//check for blacklist items
-						if(!isInBlacklist(data[i]))
+						//check for geofence
+						if(Filter.isInGeofence(data[i]))
 						{
-							//check for subfilter items
-							if(isInFilterlist(data[i]))
+							//check for blacklist items
+							if(!Filter.isInBlacklist(data[i]))
 							{
-								arrItems.push(data[i]);				
-							}								
+								//check for subfilter items
+								if(Filter.isInFilterlist(data[i]))
+								{
+									//console.log(data[i].tags.toString());
+									arrItems.push(data[i]);				
+								}								
+							}
 						}
 					}
 				}
+				
+				console.log("arrItems: " + arrItems.length);
 
 				if (isInitalLoad)
 				{
@@ -127,54 +135,6 @@ define([//
 			}
 		}
 
-		/*------------------------------------------------------*/
-
-		var isInTagLimit = function(item)
-		{
-			if(Config.getMaxTagNumber() > -1 && item.tags.length > Config.getMaxTagNumber())
-				return false;
-			
-			return true;
-		}
-		
-		var isInBlacklist = function(item)
-		{
-			var list = Config.getBlacklistTags();
-			
-			for( var i = 0; i < list.length; i++ )
-			{
-				if( $.inArray(list[i], item.tags) != -1 )
-				{
-					//console.log("found Blacklist Tag: " + list[i] + " -> dispose item");
-					return true;
-				}
-			}	
-
-			return false;
-		}
-
-		var isInFilterlist = function(item)
-		{
-			var list = Config.getFilterTags();
-			
-			if( list.length > 0 )
-			{
-				for( var i = 0; i < list.length; i++ )
-				{	
-					if( $.inArray(list[i], item.tags) != -1 )
-					{
-						//console.log("found Filter Tag: " + list[i]);
-						return true;
-					}
-				}
-				
-				//console.log("found no Filter Tag -> dispose item");
-				return false;
-			}
-			
-			return true;
-		}
-		
 		/*------------------------------------------------------*/
 		// Return
 		return {

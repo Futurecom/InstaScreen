@@ -29,14 +29,13 @@ define([//
 'tweenMax', //
 'app/config', //
 'app/data/screenData', //
-'app/feed/updater', //
+'app/loader/feedLoader', //
 'app/feed/viewer', //
-], function($, TweenMax, Config, ScreenData, Updater, Viewer)
+'app/feed/updater', //
+], function($, TweenMax, Config, ScreenData, FeedLoader, Viewer, Updater)
 {
-
 	var App = function()
 	{
-
 		var causeRepaintsOn;
 
 		/*------------------------------------------------------*/
@@ -205,10 +204,22 @@ define([//
 				},
 				ease : Linear.easeNone
 			})
-
+			
+			//start loading
+			loadData();
+		}
+		
+		var loadData = function()
+		{
+			//load feed items
+			FeedLoader.loadData(onDataLoaded, true);			
+		}
+		
+		var onDataLoaded = function()
+		{
 			// init classes
 			Viewer.start();
-
+			
 			// start backgroundupdates
 			Updater.start();
 		}

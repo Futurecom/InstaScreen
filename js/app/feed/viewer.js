@@ -25,16 +25,15 @@
  * 
  * @author mih
  */
-define([//
+define([ //
 'jquery', //
 'tweenMax', //
 'app/app', //
 'app/config', //
 'app/data/screenData', //
 'app/data/itemData', //
-'app/loader/feedLoader', //
 'app/loader/imageLoader', //
-], function( $, TweenMax, App, Config, ScreenData, ItemData, FeedLoader, ImageLoader ) {
+], function( $, TweenMax, App, Config, ScreenData, ItemData, ImageLoader ) {
 
     var Viewer = function( ) {
     	
@@ -71,8 +70,7 @@ define([//
     	{
     		console.log("Viewer.start()");
     		
-    		//load feed items
-    		FeedLoader.loadData(processFeedData, true);
+    		processFeedData();
     	}
     	
     	/*------------------------------------------------------*/

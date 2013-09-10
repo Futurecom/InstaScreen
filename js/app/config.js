@@ -24,13 +24,21 @@
  * 
  * @author mih
  */
-define([//
+define([ //
 //
 ], function()
 {
 
 	var Config = function()
 	{
+		/*
+		 * insert the required access token. you can get a valid access token
+		 * here: http://futurecom.ch/instascreen or here:
+		 * http://instagram.com/developer/authentication
+		 */
+//		var accessToken = "515660266.953c6f7.5d365e1c60a14f67938fcc3577a0fad9";
+		var accessToken = "414294402.953c6f7.cde2dd40e16b4bafa48812d3abea429e";
+
 		/*
 		 * insert the instagram api url here.
 		 * for example: https://api.instagram.com/v1
@@ -48,16 +56,7 @@ define([//
 		 * /locations/{locationid}/media/recent
 		 * /media/popular
 		 */
-//		var apiCall = "/users/self/feed";
-		var apiCall = "/tags/audi/media/recent";
-
-		/*
-		 * insert the required access token. you can get a valid access token
-		 * here: http://futurecom.ch/instascreen or here:
-		 * http://instagram.com/developer/authentication
-		 */
-//		var accessToken = "414294402.953c6f7.cde2dd40e16b4bafa48812d3abea429e";
-		var accessToken = "515660266.953c6f7.5d365e1c60a14f67938fcc3577a0fad9";
+		var apiCall = "/tags/youngrubicam/media/recent";
 
 		/*-------------------------*/
 
@@ -94,36 +93,11 @@ define([//
 
 		/*-------------------------*/
 
-		/*
-		 * array of tags for searching in the api.
-		 * IMPORTANT: be aware that every tag requires a seperate api call, so use it responsibly.
-		 * for example: ["starwars", "jedi", "darkforce"]
-		 */
-		/* NOT YET IMPLEMENTED */
-		var searchTags = [];
-
-		/*
-		 * array of tags to filter the stream.
-		 * needs to match one or more tags for adding the image to the stream.
-		 * if array is empty then the filter is ignored.
-		 * for example: ["luke", "yoda", "hansolo"]
-		 */
-//		var filterTags = [];
-		var filterTags = ["a1", "a3", "s3", "rs3", "a4", "s4", "rs4", "a5", "s5", "rs5", "a6", "a7", "a8", "q3", "q5", "q7", "r8"];
-
-		/*
-		 * array of tags to block images from adding to the stream.
-		 * for example: ["sith", "empire", "vader"]
-		 */
-//		var blacklistTags = ["shoeshot", "dasisterweckung", "ilovemychurch"];
-		var blacklistTags = ["bmw", "ford", "mercedes", "ferrari", "hermes", "gucci", "justinbieber"];
-
-		/*
-		 * max number of tags prevents tag spaming/bombing to sort out unrelated pictures.
-		 * -1 = unlimited
-		 */
+		var filterTags = [];
+		var blacklistTags = [];
 		var maxTagNumber = 20;
-
+		var geoFenceFilters = [];
+		
 		/*------------------------------------------------------*/
 
 		var getApiURL = function()
@@ -186,6 +160,13 @@ define([//
 		{
 			return maxTagNumber;
 		}
+
+		/*------------------------------------------------------*/
+		
+		var getGeoFenceFilters = function()
+		{
+			return geoFenceFilters;
+		}
 		
 		/*------------------------------------------------------*/
 		// Return
@@ -199,7 +180,8 @@ define([//
 			getMuteSound : getMuteSound,
 			getFilterTags : getFilterTags,
 			getBlacklistTags : getBlacklistTags,
-			getMaxTagNumber : getMaxTagNumber
+			getMaxTagNumber : getMaxTagNumber,
+			getGeoFenceFilters : getGeoFenceFilters
 		};
 	};
 

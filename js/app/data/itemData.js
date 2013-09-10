@@ -60,54 +60,14 @@ define([//
 				console.log("arr length: " + arr.length);
 
 				//add new items to items
-				items = items.concat(arr);
+				items = arr.concat(items);
 				
 				//sort items
 				items.sort(compareItemsById);
 				
-				
-				console.log("items length 1: " + items.length);
-				
 				// remove duplicates
 				items = _.uniq(items, 'id');
 				
-				console.log("items length 2: " + items.length);
-				
-				
-//				for ( var i = 0; i < items.length; i++)
-//				{
-//					var duplicateChecker = $.inArray(items[i], arr);
-//					
-//					console.log("Check for dups: " + duplicateChecker);
-//					
-//					if( duplicateChecker != -1 )
-//					{
-//						arr.splice(duplicateChecker, 1);
-//					}
-//				}
-
-//				console.log("new length: " + arr.length);
-//
-//				// add new item to items
-//				for ( var i = 0; i < arr.length; i++)
-//				{
-//					console.log("adding new item: " + arr[i].id);
-//
-//					// add new item to items
-//					items.splice(i, 0, arr[i]);
-//
-//					// push new items to newItems
-//					newItems.push(arr[i]);
-//				}
-
-//				if (arr.length > 0)
-//				{
-//					// sort items by id
-//					items.sort(compareItemsById);
-//				}
-//				
-//				console.log(newItems);
-
 				var itemsAdded = Math.abs(items.length - Config.getMaxItems());
 				console.log("Total items added: " + itemsAdded);
 

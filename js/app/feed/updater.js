@@ -24,7 +24,7 @@
  * 
  * @author mih
  */
-define([//
+define([ //
 'app/config', //
 'app/data/itemData', //
 'app/loader/feedLoader', //
