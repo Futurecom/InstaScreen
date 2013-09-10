@@ -36,20 +36,20 @@ BR: Top Left Coordinate in Lat/Lon
 ```JSON
 {
     [{
-	"apiCall": "/tags/cats/media/recent",
-	"maxTagNumber": 20,
-	"filterTags": [""],
-	"blacklistTags": ["dog","dogs"],
-	"geoFenceFilters": [{
-		"TL": {
-			"lat": 48.500000,
-			"lon": 5.00000
-		},
-		"BR": {
-			"lat": 45.000000,
-			"lon": 12.00000
-		}
-	}]
+        "apiCall": "/tags/catsofinstagram/media/recent",
+        "maxTagNumber": 20,
+        "filterTags": ["kitten", "cute"],
+        "blacklistTags": ["dog","dogs"],
+        "geoFenceFilters": [{
+			"TL": {
+				"latitude": 48.500000,
+				"longitude": 5.00000
+			},
+			"BR": {
+				"latitude": 45.000000,
+				"longitude": 12.00000
+			}
+		}]
     }]
 }
 ```
