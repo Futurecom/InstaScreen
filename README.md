@@ -18,16 +18,50 @@ Usage
 
 ### config.js ###
 
-All the important variables are stored in the Config.js file.
+All the important variables are stored in the config.js file.
 
 ### data.json ###
 
-API calls are stored in the data.json file.
+API calls are stored in a data.json file as an Array of calls. Every api call has a set of settings (see below).
 
-#### Geo Fence Filters ####
+#### API Call URL ####
+`apiCall`
+Insert the instagram api endpoint call here. list of endpoints can be found here: http://instagram.com/developer/endpoints/
+Tested endpoint calls:
+* /users/self/feed
+* /users/self/media/liked
+* /users/{userid}/media/recent
+* /tags/{tagname}/media/recent
+* /locations/{locationid}/media/recent
+* /media/popular
+
+#### Blacklisting ####
+`blacklistTags`
+Array of tags to block images from adding to the stream.
+For example: ["sith", "empire", "vader"]
+
+[] = no Blacklisting
+
+#### Sub filtering ####
+`filterTags`
+Array of tags to sub filter the stream.
+Needs to match one or more tags for adding the image to the stream.
+If the array is empty then the filter is ignored.
+For example: ["luke", "yoda", "hansolo"]
+
+[] = no Subfiltering
+
+#### Tag number filtering ####
+`maxTagNumber`
+Max number of tags prevents tag spaming/bombing to sort out unrelated pictures.
+
+-1 = unlimited tags
+	
+#### Geo Fence ####
+`geoFenceFilters`
 Filters out images that are outside of the targeted area.
-TL: Top Left Coordinate in Lat/Lon
-BR: Top Left Coordinate in Lat/Lon
+TL: Top Left Coordinate in Latitude/Longitude
+BR: Top Left Coordinate in Latitude/Longitude
 
 [] = no filter
 
