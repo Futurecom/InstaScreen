@@ -68,8 +68,8 @@ BR: Top Left Coordinate in Latitude/Longitude
 #### JSON Example ####
 
 ```JSON
-{
-    "data": [{
+[
+    {
         "apiCall": "/tags/catsofinstagram/media/recent",
         "maxTagNumber": 20,
         "filterTags": ["kitten", "cute"],
@@ -84,8 +84,8 @@ BR: Top Left Coordinate in Latitude/Longitude
 				"longitude": 12.00000
 			}
 		}]
-    }]
-}
+    }
+]
 ```
 
 LESS Compiler

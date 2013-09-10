@@ -1,0 +1,23 @@
+[
+    {
+        "apiCall": "/tags/youngrubicam/media/recent",
+        "maxTagNumber": 20,
+        "filterTags": [],
+        "blacklistTags":[],
+        "geoFenceFilters": []
+    },
+    {
+        "apiCall": "/tags/youngandrubicam/media/recent",
+        "maxTagNumber": 20,
+        "filterTags": [],
+        "blacklistTags":[],
+        "geoFenceFilters": []
+    },
+    {
+        "apiCall": "/tags/yrgroup/media/recent",
+        "maxTagNumber": 20,
+        "filterTags": [],
+        "blacklistTags":[],
+        "geoFenceFilters": []
+    }
+]
