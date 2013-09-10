@@ -69,7 +69,7 @@ BR: Top Left Coordinate in Latitude/Longitude
 
 ```JSON
 {
-    [{
+    "data": [{
         "apiCall": "/tags/catsofinstagram/media/recent",
         "maxTagNumber": 20,
         "filterTags": ["kitten", "cute"],
