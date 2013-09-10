@@ -88,7 +88,8 @@ BR: Top Left Coordinate in Latitude/Longitude
 }
 ```
 
-### LESS ###
+LESS Compiler
+---------------------
 
 To compile LESS into CSS you need to install the Less Compiler.  
 Download here: http://lesscss.org/
