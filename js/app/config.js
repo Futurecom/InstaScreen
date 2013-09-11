@@ -39,6 +39,8 @@ define([ //
 //		var accessToken = "515660266.953c6f7.5d365e1c60a14f67938fcc3577a0fad9";
 		var accessToken = "414294402.953c6f7.cde2dd40e16b4bafa48812d3abea429e";
 
+		/*-------------------------*/
+
 		/*
 		 * insert the instagram api url here.
 		 * for example: https://api.instagram.com/v1
@@ -46,18 +48,32 @@ define([ //
 		var apiURL = "https://api.instagram.com/v1";
 
 		/*
-		 * insert the instagram api endpoint call here. list of endpoints can be
-		 * found here: http://instagram.com/developer/endpoints/
-		 * tested endpoint calls:
-		 * /users/self/feed
-		 * /users/self/media/liked
-		 * /users/{userid}/media/recent
-		 * /tags/{tagname}/media/recent
-		 * /locations/{locationid}/media/recent
-		 * /media/popular
+		 * array of api calls
 		 */
-		var apiCall = "/tags/youngrubicam/media/recent";
-
+		var apiCalls = [
+		     {
+		    	 "apiEndpoint": "/tags/yrgroup/media/recent",
+		    	 "maxTagNumber": -1,
+		    	 "filterTags": [],
+		    	 "blacklistTags": [],
+		    	 "geoFenceFilters": []
+			 },
+		     {
+		    	 "apiEndpoint": "/tags/youngrubicam/media/recent",
+		         "maxTagNumber": -1,
+		         "filterTags": [],
+		         "blacklistTags": [],
+		         "geoFenceFilters": []
+		     },
+		     {
+		    	 "apiEndpoint": "/tags/youngandrubicam/media/recent",
+		         "maxTagNumber": -1,
+		         "filterTags": [],
+		         "blacklistTags": [],
+		         "geoFenceFilters": []
+		     }
+		];
+		
 		/*-------------------------*/
 
 		/*
@@ -90,24 +106,22 @@ define([ //
 		 * mute sounds from videos default: false
 		 */
 		var muteSound = false;
-
-		/*-------------------------*/
-
-		var filterTags = [];
-		var blacklistTags = [];
-		var maxTagNumber = 20;
-		var geoFenceFilters = [];
 		
 		/*------------------------------------------------------*/
-
-		var getApiURL = function()
-		{
-			return (apiURL + apiCall);
-		};
 
 		var getAccessToken = function()
 		{
 			return accessToken;
+		};
+
+		var getApiURL = function()
+		{
+			return apiURL;
+		};
+
+		var getApiCalls = function()
+		{
+			return apiCalls;
 		};
 
 		/*------------------------------------------------------*/
@@ -143,45 +157,17 @@ define([ //
 			return muteSound;
 		};
 
-		
-		/*------------------------------------------------------*/
-
-		var getFilterTags = function()
-		{
-			return filterTags;
-		}
-
-		var getBlacklistTags = function()
-		{
-			return blacklistTags;
-		}
-		
-		var getMaxTagNumber = function()
-		{
-			return maxTagNumber;
-		}
-
-		/*------------------------------------------------------*/
-		
-		var getGeoFenceFilters = function()
-		{
-			return geoFenceFilters;
-		}
-		
 		/*------------------------------------------------------*/
 		// Return
 		return {
-			getApiURL : getApiURL,
 			getAccessToken : getAccessToken,
+			getApiURL : getApiURL,
+			getApiCalls : getApiCalls,
 			getMaxItems : getMaxItems,
 			getAnimationInterval : getAnimationInterval,
 			getApiInterval : getApiInterval,
 			getPrioritizeNewItems : getPrioritizeNewItems,
-			getMuteSound : getMuteSound,
-			getFilterTags : getFilterTags,
-			getBlacklistTags : getBlacklistTags,
-			getMaxTagNumber : getMaxTagNumber,
-			getGeoFenceFilters : getGeoFenceFilters
+			getMuteSound : getMuteSound
 		};
 	};
 

@@ -24,8 +24,8 @@ All the important variables are stored in the config.js file.
 
 API calls are stored in a data.json file as an Array of calls. Every api call has a set of settings (see below).
 
-#### API Call URL ####
-`apiCall`
+#### API Endpoint URL ####
+`apiEndpoint`
 Insert the instagram api endpoint call here. list of endpoints can be found here: http://instagram.com/developer/endpoints/
 Tested endpoint calls:
 * /users/self/feed
@@ -40,7 +40,7 @@ Tested endpoint calls:
 Array of tags to block images from adding to the stream.
 For example: ["sith", "empire", "vader"]
 
-[] = no Blacklisting
+`[] = no Blacklisting`
 
 #### Sub filtering ####
 `filterTags`
@@ -49,13 +49,13 @@ Needs to match one or more tags for adding the image to the stream.
 If the array is empty then the filter is ignored.
 For example: ["luke", "yoda", "hansolo"]
 
-[] = no Subfiltering
+`[] = no Subfiltering`
 
 #### Tag number filtering ####
 `maxTagNumber`
 Max number of tags prevents tag spaming/bombing to sort out unrelated pictures.
 
--1 = unlimited tags
+`-1 = unlimited tags`
 	
 #### Geo Fence ####
 `geoFenceFilters`
@@ -63,14 +63,14 @@ Filters out images that are outside of the targeted area.
 TL: Top Left Coordinate in Latitude/Longitude
 BR: Top Left Coordinate in Latitude/Longitude
 
-[] = no filter
+`[] = no filter`
 
 #### JSON Example ####
 
 ```JSON
 [
     {
-        "apiCall": "/tags/catsofinstagram/media/recent",
+        "apiEndpoint": "/tags/catsofinstagram/media/recent",
         "maxTagNumber": 20,
         "filterTags": ["kitten", "cute"],
         "blacklistTags": ["dog","dogs"],
@@ -84,7 +84,8 @@ BR: Top Left Coordinate in Latitude/Longitude
 				"longitude": 12.00000
 			}
 		}]
-    }
+    },
+    {...}
 ]
 ```
 

@@ -41,16 +41,17 @@ define([//
 
 		var addItems = function(arr)
 		{
-			for ( var i = 0; i < arr.length; i++)
-			{
-				if (i < Config.getMaxItems())
-				{
-					items.push(arr[i]);
-				}
-			}
-
+			//add new items to items
+			items = arr.concat(items);
+			
 			// sort items by id
 			items.sort(compareItemsById);
+			
+			// remove duplicates
+			items = _.uniq(items, true, 'id');
+			
+			// delete out of range elements
+			items.splice(Config.getMaxItems(), Number.MAX_VALUE);
 		}
 
 		var addNewItems = function(arr)
@@ -66,7 +67,7 @@ define([//
 				items.sort(compareItemsById);
 				
 				// remove duplicates
-				items = _.uniq(items, 'id');
+				items = _.uniq(items, true, 'id');
 				
 				var itemsAdded = Math.abs(items.length - Config.getMaxItems());
 				console.log("Total items added: " + itemsAdded);

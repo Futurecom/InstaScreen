@@ -30,65 +30,69 @@ define([ //
 {
 	var Filter = function()
 	{
-		var isInTagLimit = function(item)
+		var apiCalls = Config.getApiCalls();
+
+		var isInTagLimit = function(call, item)
 		{
-			if(Config.getMaxTagNumber() > -1 && item.tags.length > Config.getMaxTagNumber())
+			var maxTagNumber = (call.maxTagNumber != null) ? call.maxTagNumber : -1;
+
+			if (maxTagNumber > -1 && item.tags.length > maxTagNumber)
 				return false;
-			
+
 			return true;
 		}
-		
-		var isInBlacklist = function(item)
-		{
-			var list = Config.getBlacklistTags();
-			
-			for( var i = 0; i < list.length; i++ )
-			{
-				if( $.inArray(list[i], item.tags) != -1 )
-				{
-					return true;
-				}
-			}	
 
-			return false;
-		}
-
-		var isInFilterlist = function(item)
+		var isInFilterlist = function(call, item)
 		{
-			var list = Config.getFilterTags();
-			
-			if( list.length > 0 )
+			var list = (call.filterTags != null) ? call.filterTags : [];
+
+			if (list.length > 0)
 			{
-				for( var i = 0; i < list.length; i++ )
+				for ( var i = 0; i < list.length; i++)
 				{
-					if( $.inArray(list[i], item.tags) != -1 )
+					if ($.inArray(list[i], item.tags) != -1)
 					{
 						return true;
 					}
 				}
-				
+
 				return false;
 			}
-			
+
 			return true;
 		}
-
-		var isInGeofence = function(item)
+		
+		var isInBlacklist = function(call, item)
 		{
-			var list = Config.getGeoFenceFilters();
-			
-			if( list.length > 0 )
+			var list = (call.blacklistTags != null) ? call.blacklistTags : [];
+
+			for ( var i = 0; i < list.length; i++)
 			{
-				for( var i = 0; i < list.length; i++ )
+				if ($.inArray(list[i], item.tags) != -1)
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		var isInGeofence = function(call, item)
+		{
+			var list = (call.geoFenceFilters != null) ? call.geoFenceFilters : [];
+
+			if (list.length > 0)
+			{
+				for ( var i = 0; i < list.length; i++)
 				{
 					var geoFence = list[i];
-					if(geoFence.BR != null && geoFence.TL != null)
+					if (geoFence.BR != null && geoFence.TL != null)
 					{
-						if(item.location != null && item.location.latitude != null)
+						if (item.location != null && item.location.latitude != null)
 						{
 							var lat = item.location.latitude;
 							var lon = item.location.longitude;
-							
+
 							if (lat >= geoFence.BR.lat && lat <= geoFence.TL.lat && lon >= geoFence.TL.lon && lon <= geoFence.BR.lon)
 							{
 								return true;
@@ -99,7 +103,7 @@ define([ //
 
 				return false;
 			}
-			
+
 			return true;
 		}
 

@@ -31,19 +31,19 @@ require.config({
 	
 	paths: {
         jquery: [
-             '//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min',
+             'https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min',
              // If the CDN location fails, load from this location
              'lib/jquery/jquery-2.0.3.min'
         ],
 
         lodash: [
-             '//cdnjs.cloudflare.com/ajax/libs/lodash.js/1.3.1/lodash.min',
+             'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/1.3.1/lodash.min',
              // If the CDN location fails, load from this location
              'lib/lodash/lodash.min'
         ],
         
         tweenMax: [
-             '//cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min',
+             'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min',
              // If the CDN location fails, load from this location
              'lib/gsap/1.10.3/TweenMax.min'
         ],

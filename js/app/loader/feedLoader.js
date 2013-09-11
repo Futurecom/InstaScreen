@@ -25,13 +25,13 @@
  * 
  * @author mih
  */
-define([//
+define([ //
 'jquery', //
 'app/config', //
 'app/data/itemData', //
 'app/feed/filter', //
-], function($, Config, ItemData, Filter) {
-
+], function($, Config, ItemData, Filter)
+{
 	var FeedLoader = function()
 	{
 		var arrItems = [];
@@ -39,33 +39,65 @@ define([//
 		var callback;
 		var isInitalLoad;
 
+		var callData;
+		var callId = 0;
+		var maxItems = Config.getMaxItems();
+
+		var apiCallUrl;
+
 		/*------------------------------------------------------*/
 
 		var loadData = function(cb, initLoad)
 		{
-			arrItems = [];
-
 			callback = cb;
 			isInitalLoad = initLoad;
+			
+			callId = 0;
+			maxItems = Math.ceil(Config.getMaxItems() / Config.getApiCalls().length);
 
-			loadFeedData(Config.getApiURL());
+			checkForNextFeed();
 		}
 
 		var loadNewData = function()
 		{
-			arrItems = [];
-			
 			callback = undefined;
 			isInitalLoad = false;
 			
-			loadFeedData(Config.getApiURL());
+			callId = 0;
+			maxItems = Config.getMaxItems();
+
+			checkForNextFeed();
 		}
 
 		/*------------------------------------------------------*/
 
-		var loadFeedData = function(url)
+		var checkForNextFeed = function()
 		{
-			var apiUrl = (url != undefined) ? url : Config.getApiURL();
+			console.log(callId + " of " + Config.getApiCalls().length)
+			console.log(maxItems)
+			
+			//check if any apiCalls are left
+			if (callId < Config.getApiCalls().length)
+			{
+				arrItems = [];
+				
+				callData = Config.getApiCalls()[callId];
+				apiCallUrl = Config.getApiURL() + callData.apiEndpoint;
+				loadFeedData(apiCallUrl);
+			}
+			else
+			{
+				if (callback)
+					callback();
+			}
+
+			callId += 1;
+		}
+
+		/*------------------------------------------------------*/
+
+		var loadFeedData = function(apiUrl)
+		{
 			console.log("url: " + apiUrl);
 
 			$.ajax({
@@ -82,36 +114,37 @@ define([//
 
 		var onFeedDataLoaded = function(json)
 		{
-			if (json && json.meta.code == 200) {
+			if (json && json.meta.code == 200)
+			{
 				data = json.data;
-				
-				for ( var i = 0; i < data.length; i++ )
+
+				for ( var i = 0; i < data.length; i++)
 				{
 					//check for tag limit
-					if(Filter.isInTagLimit(data[i]))
+					if (Filter.isInTagLimit(callData, data[i]))
 					{
 						//check for geofence
-						if(Filter.isInGeofence(data[i]))
+						if (Filter.isInGeofence(callData, data[i]))
 						{
 							//check for blacklist items
-							if(!Filter.isInBlacklist(data[i]))
+							if (!Filter.isInBlacklist(callData, data[i]))
 							{
 								//check for subfilter items
-								if(Filter.isInFilterlist(data[i]))
+								if (Filter.isInFilterlist(callData, data[i]))
 								{
 									//console.log(data[i].tags.toString());
-									arrItems.push(data[i]);				
-								}								
+									arrItems.push(data[i]);
+								}
 							}
 						}
 					}
 				}
-				
+
 				console.log("arrItems: " + arrItems.length);
 
 				if (isInitalLoad)
 				{
-					if (!jQuery.isEmptyObject(json.pagination) && arrItems.length < Config.getMaxItems())
+					if (json.pagination.next_url != null && arrItems.length < maxItems)
 					{
 						loadFeedData(json.pagination.next_url);
 					}
@@ -119,19 +152,19 @@ define([//
 					{
 						// add items to Data Class
 						ItemData.addItems(arrItems);
-						if(callback) callback();
+						checkForNextFeed();
 					}
 				}
 				else
 				{
 					// add new items to Data Class
 					ItemData.addNewItems(arrItems);
-					if(callback) callback();
+					checkForNextFeed();
 				}
 			}
 			else
 			{
-				loadFeedData();
+				loadFeedData(apiCallUrl);
 			}
 		}
 
