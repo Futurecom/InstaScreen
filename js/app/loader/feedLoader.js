@@ -108,7 +108,8 @@ define([ //
 				},
 				type : 'GET',
 				dataType : 'jsonp',
-				success : onFeedDataLoaded
+				success : onFeedDataLoaded,
+				error: onFeedDataError
 			});
 		}
 
@@ -144,7 +145,7 @@ define([ //
 
 				if (isInitalLoad)
 				{
-					if (json.pagination.next_url != null && arrItems.length < maxItems)
+					if (json.pagination.next_url && arrItems.length < maxItems)
 					{
 						loadFeedData(json.pagination.next_url);
 					}
@@ -167,7 +168,14 @@ define([ //
 				loadFeedData(apiCallUrl);
 			}
 		}
-
+		
+		var onFeedDataError = function(jqXHR)
+		{
+			console.log("FeedDataError: " + jqXHR.status + " - " + jqXHR.statusText);
+			
+			window.setTimeout(loadFeedData, 5 * 1000, apiCallUrl);
+		}
+		
 		/*------------------------------------------------------*/
 		// Return
 		return {

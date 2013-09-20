@@ -27,7 +27,7 @@
  */
 require.config({
 	//version for caching scripts
-	urlArgs: "bust=v-1-0-4",
+	urlArgs: "bust=v-1-0-5",
 	
 	paths: {
         jquery: [

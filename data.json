@@ -1,23 +1,30 @@
 [
-    {
-        "apiCall": "/tags/youngrubicam/media/recent",
-        "maxTagNumber": 20,
-        "filterTags": [],
-        "blacklistTags":[],
-        "geoFenceFilters": []
-    },
-    {
-        "apiCall": "/tags/youngandrubicam/media/recent",
-        "maxTagNumber": 20,
-        "filterTags": [],
-        "blacklistTags":[],
-        "geoFenceFilters": []
-    },
-    {
-        "apiCall": "/tags/yrgroup/media/recent",
-        "maxTagNumber": 20,
-        "filterTags": [],
-        "blacklistTags":[],
-        "geoFenceFilters": []
-    }
+     {
+         "apiEndpoint": "/tags/yrgroup/media/recent",
+         "maxTagNumber": -1,
+         "filterTags": [],
+         "blacklistTags": [],
+         "geoFenceFilters": []
+     },
+     {
+         "apiEndpoint": "/tags/youngrubicam/media/recent",
+         "maxTagNumber": -1,
+         "filterTags": [],
+         "blacklistTags": [],
+         "geoFenceFilters": []
+     },
+     {
+         "apiEndpoint": "/tags/youngandrubicam/media/recent",
+         "maxTagNumber": -1,
+         "filterTags": [],
+         "blacklistTags": [],
+         "geoFenceFilters": []
+     },
+     {
+         "apiEndpoint": "/tags/wunderman/media/recent",
+         "maxTagNumber": -1,
+         "filterTags": [],
+         "blacklistTags": [],
+         "geoFenceFilters": []
+     }
 ]

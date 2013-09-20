@@ -25,8 +25,9 @@
  * @author mih
  */
 define([ //
+'jquery', //
 'app/config', //
-], function(Config)
+], function($, Config)
 {
 	var Filter = function()
 	{
@@ -34,7 +35,7 @@ define([ //
 
 		var isInTagLimit = function(call, item)
 		{
-			var maxTagNumber = (call.maxTagNumber != null) ? call.maxTagNumber : -1;
+			var maxTagNumber = $.isNumeric(call.maxTagNumber) ? call.maxTagNumber : -1;
 
 			if (maxTagNumber > -1 && item.tags.length > maxTagNumber)
 				return false;
@@ -44,7 +45,7 @@ define([ //
 
 		var isInFilterlist = function(call, item)
 		{
-			var list = (call.filterTags != null) ? call.filterTags : [];
+			var list = $.isArray(call.filterTags) ? call.filterTags : [];
 
 			if (list.length > 0)
 			{
@@ -61,10 +62,10 @@ define([ //
 
 			return true;
 		}
-		
+
 		var isInBlacklist = function(call, item)
 		{
-			var list = (call.blacklistTags != null) ? call.blacklistTags : [];
+			var list = $.isArray(call.blacklistTags) ? call.blacklistTags : [];
 
 			for ( var i = 0; i < list.length; i++)
 			{
@@ -79,7 +80,7 @@ define([ //
 
 		var isInGeofence = function(call, item)
 		{
-			var list = (call.geoFenceFilters != null) ? call.geoFenceFilters : [];
+			var list = $.isArray(call.geoFenceFilters) ? call.geoFenceFilters : [];
 
 			if (list.length > 0)
 			{

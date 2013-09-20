@@ -50,6 +50,8 @@ define([ //
 		/*
 		 * array of api calls
 		 */
+		//var apiCalls = "bla.json";
+		
 		var apiCalls = [
 		     {
 		    	 "apiEndpoint": "/tags/yrgroup/media/recent",
@@ -67,6 +69,13 @@ define([ //
 		     },
 		     {
 		    	 "apiEndpoint": "/tags/youngandrubicam/media/recent",
+		         "maxTagNumber": -1,
+		         "filterTags": [],
+		         "blacklistTags": [],
+		         "geoFenceFilters": []
+		     },
+		     {
+		    	 "apiEndpoint": "/tags/wunderman/media/recent",
 		         "maxTagNumber": -1,
 		         "filterTags": [],
 		         "blacklistTags": [],
