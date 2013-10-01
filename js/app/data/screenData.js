@@ -42,48 +42,48 @@ define([//
 		var getWindowWidth = function()
 		{
 			return windowWidth;
-		}
+		};
 
 		var setWindowWidth = function(value)
 		{
 			windowWidth = value;
-		}
+		};
 
 		/*-------------------------*/
 
 		var getWindowHeight = function()
 		{
 			return windowHeight;
-		}
+		};
 
 		var setWindowHeight = function(value)
 		{
 			windowHeight = value;
-		}
+		};
 
 		/*-------------------------*/
 
 		var getOrientation = function()
 		{
 			return orientation;
-		}
+		};
 
 		var setOrientation = function(value)
 		{
 			orientation = value;
-		}
+		};
 
 		/*-------------------------*/
 
 		var getIsIOS = function()
 		{
 			return isIOS;
-		}
+		};
 
 		var setIsIOS = function(value)
 		{
 			isIOS = value;
-		}
+		};
 
 		/*------------------------------------------------------*/
 		// Return

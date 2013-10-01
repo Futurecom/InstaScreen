@@ -56,7 +56,7 @@ define([ //
 			maxItems = Math.ceil(Config.getMaxItems() / Config.getApiCalls().length);
 
 			checkForNextFeed();
-		}
+		};
 
 		var loadNewData = function()
 		{
@@ -67,14 +67,14 @@ define([ //
 			maxItems = Config.getMaxItems();
 
 			checkForNextFeed();
-		}
+		};
 
 		/*------------------------------------------------------*/
 
 		var checkForNextFeed = function()
 		{
-			console.log(callId + " of " + Config.getApiCalls().length)
-			console.log(maxItems)
+			console.log(callId + " of " + Config.getApiCalls().length);
+			console.log(maxItems);
 			
 			//check if any apiCalls are left
 			if (callId < Config.getApiCalls().length)
@@ -92,7 +92,7 @@ define([ //
 			}
 
 			callId += 1;
-		}
+		};
 
 		/*------------------------------------------------------*/
 
@@ -111,7 +111,7 @@ define([ //
 				success : onFeedDataLoaded,
 				error: onFeedDataError
 			});
-		}
+		};
 
 		var onFeedDataLoaded = function(json)
 		{
@@ -167,14 +167,14 @@ define([ //
 			{
 				loadFeedData(apiCallUrl);
 			}
-		}
+		};
 		
 		var onFeedDataError = function(jqXHR)
 		{
 			console.log("FeedDataError: " + jqXHR.status + " - " + jqXHR.statusText);
 			
 			window.setTimeout(loadFeedData, 5 * 1000, apiCallUrl);
-		}
+		};
 		
 		/*------------------------------------------------------*/
 		// Return

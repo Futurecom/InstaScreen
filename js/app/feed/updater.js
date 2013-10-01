@@ -42,7 +42,7 @@ define([ //
 
 			// start check interval for added feed items
 			checkTimerObj = window.setInterval(checkForNewItems, Config.getApiInterval() * 1000);
-		}
+		};
 
 		/*------------------------------------------------------*/
 
@@ -52,7 +52,7 @@ define([ //
 
 			// load feed items
 			FeedLoader.loadNewData();
-		}
+		};
 
 		/*------------------------------------------------------*/
 		// Return

@@ -66,7 +66,7 @@ define([//
 
 			// start App
 			start();
-		}
+		};
 
 		/*------------------------------------------------------*/
 
@@ -179,7 +179,7 @@ define([//
 
 			// repaint fonts on resize
 			causeRepaintsOn.css("z-index", 1);
-		}
+		};
 
 		/*------------------------------------------------------*/
 
@@ -194,7 +194,7 @@ define([//
 					autoAlpha : 0
 				},
 				ease : Linear.easeNone
-			})
+			});
 
 			// show content
 			TweenMax.to('#bodyWrapper', 0.5, {
@@ -203,17 +203,17 @@ define([//
 					autoAlpha : 1
 				},
 				ease : Linear.easeNone
-			})
+			});
 			
 			//start loading
 			loadData();
-		}
+		};
 		
 		var loadData = function()
 		{
 			//load feed items
 			FeedLoader.loadData(onDataLoaded, true);			
-		}
+		};
 		
 		var onDataLoaded = function()
 		{
@@ -222,7 +222,7 @@ define([//
 			
 			// start backgroundupdates
 			Updater.start();
-		}
+		};
 
 		/*------------------------------------------------------*/
 		// Return

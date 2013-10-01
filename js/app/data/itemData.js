@@ -52,7 +52,7 @@ define([//
 			
 			// delete out of range elements
 			items.splice(Config.getMaxItems(), Number.MAX_VALUE);
-		}
+		};
 
 		var addNewItems = function(arr)
 		{
@@ -82,7 +82,7 @@ define([//
 			{
 				addItems(arr);
 			}
-		}
+		};
 
 		/*------------------------------------------------------*/
 
@@ -95,26 +95,26 @@ define([//
 				return 1;
 
 			return 0;
-		}
+		};
 
 		/*------------------------------------------------------*/
 
 		var removeNewItems = function()
 		{
 			newItems = [];
-		}
+		};
 
 		/*------------------------------------------------------*/
 
 		var getItems = function()
 		{
 			return items;
-		}
+		};
 
 		var getNewItems = function()
 		{
 			return newItems;
-		}
+		};
 
 		/*------------------------------------------------------*/
 		// Return

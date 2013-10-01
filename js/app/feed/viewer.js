@@ -71,7 +71,7 @@ define([ //
     		console.log("Viewer.start()");
     		
     		processFeedData();
-    	}
+    	};
     	
     	/*------------------------------------------------------*/
 
@@ -91,7 +91,7 @@ define([ //
 			while(arrCurrentItems.length < items.length && arrCurrentItems.length < Config.getMaxItems())
 			{
 				//get nextId
-				nextId = counter % Config.getMaxItems();
+				nextId = counter % Math.min(arrItems.length, Config.getMaxItems());
 				
 				//add item to currentItems
 				arrCurrentItems.push(arrItems[nextId]);
@@ -131,7 +131,7 @@ define([ //
 			
 			//remove first element of current array
 			arrCurrentItems.shift();
-		}
+		};
 
 		/*------------------------------------------------------*/
 		
@@ -139,7 +139,7 @@ define([ //
 		{
 			var img = arrImages.shift();
 			element.find('img').attr('src', img);
-		}
+		};
 		
 		var getVideo = function(element)
 		{
@@ -160,7 +160,7 @@ define([ //
 			{
 				videoIsPlaying = false;				
 			}
-		}
+		};
 		
 		var videoDone = function(e)
 		{
@@ -177,7 +177,7 @@ define([ //
 			video.attr('src', "");
 			
 			processFeedData();
-		}
+		};
 		
 		var getName = function(element)
 		{
@@ -185,7 +185,7 @@ define([ //
 
 			element.find('h1').text(currentItem.user.full_name);
 			element.find('span').text(' - @' + currentItem.user.username);
-		}
+		};
 		
 		var getCaption = function(element)
 		{
@@ -206,7 +206,7 @@ define([ //
 			}
 			
 			element.find('span').text(caption);
-		}
+		};
 		
 		/*------------------------------------------------------*/
 		
@@ -269,26 +269,26 @@ define([ //
 			
 			
 			tl.addCallback(refreshTimeout, "+=0");
-		}
+		};
     	
 		/*------------------------------------------------------*/
 		
 		var refreshTimeout = function( )
 		{
 			refreshTimerObj = window.setTimeout(callRefreshTimeout, Config.getAnimationInterval() * 1000);
-		}
+		};
 		
 		var callRefreshTimeout = function( )
 		{
 			if(!videoIsPlaying){
 				processFeedData();
 			}
-		}
+		};
 		
 		var clearRefreshTimeout = function( )
 		{
 			window.clearTimeout(refreshTimerObj);
-		}
+		};
 		
     	/*------------------------------------------------------*/
     	// Return

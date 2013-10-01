@@ -41,7 +41,7 @@ define([ //
 				return false;
 
 			return true;
-		}
+		};
 
 		var isInFilterlist = function(call, item)
 		{
@@ -61,7 +61,7 @@ define([ //
 			}
 
 			return true;
-		}
+		};
 
 		var isInBlacklist = function(call, item)
 		{
@@ -76,7 +76,7 @@ define([ //
 			}
 
 			return false;
-		}
+		};
 
 		var isInGeofence = function(call, item)
 		{
@@ -87,14 +87,18 @@ define([ //
 				for ( var i = 0; i < list.length; i++)
 				{
 					var geoFence = list[i];
-					if (geoFence.BR != null && geoFence.TL != null)
+					if (geoFence.BR && geoFence.TL)
 					{
-						if (item.location != null && item.location.latitude != null)
+						if (item.location && item.location.latitude)
 						{
-							var lat = item.location.latitude;
-							var lon = item.location.longitude;
+							var latitude = item.location.latitude;
+							var longitude = item.location.longitude;
 
-							if (lat >= geoFence.BR.lat && lat <= geoFence.TL.lat && lon >= geoFence.TL.lon && lon <= geoFence.BR.lon)
+							console.log(latitude + " , " + longitude);
+							console.log(geoFence.BR);
+							console.log(geoFence.TL);
+
+							if (latitude >= geoFence.BR.latitude && latitude <= geoFence.TL.latitude && longitude >= geoFence.TL.longitude && longitude <= geoFence.BR.longitude)
 							{
 								return true;
 							}
@@ -106,7 +110,7 @@ define([ //
 			}
 
 			return true;
-		}
+		};
 
 		/*------------------------------------------------------*/
 		// Return

@@ -38,30 +38,30 @@ define([//
 			var arr = (typeof arr != "object") ? [ arr ] : arr;
 			var postaction = function()
 			{
-			}
+			};
 
 			function imageLoadPost()
 			{
-				loadedimages++
+				loadedimages++;
 				if (loadedimages == arr.length)
 				{
 					// call postaction and pass in new images array as parameter
-					postaction(newimages)
+					postaction(newimages);
 				}
 			}
 
 			for ( var i = 0; i < arr.length; i++)
 			{
-				newimages[i] = new Image()
-				newimages[i].src = arr[i]
+				newimages[i] = new Image();
+				newimages[i].src = arr[i];
 				newimages[i].onload = function()
 				{
-					imageLoadPost()
-				}
+					imageLoadPost();
+				};
 				newimages[i].onerror = function()
 				{
-					imageLoadPost()
-				}
+					imageLoadPost();
+				};
 			}
 
 			// return blank object with done() method
@@ -70,10 +70,10 @@ define([//
 				{
 					// remember user defined callback functions to be called
 					// when images load
-					postaction = f || postaction
+					postaction = f || postaction;
 				}
-			}
-		}
+			};
+		};
 
 		/*------------------------------------------------------*/
 		// Return
