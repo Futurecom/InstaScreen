@@ -81,11 +81,17 @@ define([ //
 
 			//get items
 			var arrItems = ItemData.getItems();
-			var arrNewItems = ItemData.getNewItems();
 
 			arrImages = [];
 	
 			items = $(".imageWrapper");
+			
+			//check if we have more arrItems than items
+			if(arrItems.length < items.length)
+			{
+				window.setTimeout(start, 10 * 1000);
+				return;
+			}
 			
 			//fill up array
 			while(arrCurrentItems.length < items.length && arrCurrentItems.length < Config.getMaxItems())
@@ -105,16 +111,23 @@ define([ //
 			//get current item
 			currentItem = arrCurrentItems[0];
 
-			//fill in new items
-			for(var i = 0; i < arrNewItems.length; i++)
+			//check for prioritizeNewItems flag
+			if(Config.getPrioritizeNewItems())
 			{
-				arrCurrentItems.push(arrNewItems[i]);
+				//get new items
+				var arrNewItems = ItemData.getNewItems();
 				
-				counter += 1;
+				//fill in new items
+				for(var i = 0; i < arrNewItems.length; i++)
+				{
+					arrCurrentItems.push(arrNewItems[i]);
+					//update counter
+					counter += 1;
+				}
+				
+				//remove new items in Data Class
+				ItemData.removeNewItems();
 			}
-			
-			//remove new items in Data Class
-			ItemData.removeNewItems();
 		
 			console.log("counter: " + counter + ", arrItems: " + arrItems.length + ", arrCurrentItems: " + arrCurrentItems.length);
 			

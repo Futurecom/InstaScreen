@@ -114,7 +114,6 @@ define([//
 		/*
 		 * use priority for new images. (display new images asap) default: true
 		 */
-		/* NOT YET IMPLEMENTED */
 		var prioritizeNewItems = true;
 
 		/*-------------------------*/
