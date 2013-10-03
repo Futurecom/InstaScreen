@@ -1,40 +1,41 @@
 /**
  * Copyright (c) 2013 Futurecom interactive All Rights Reserved.
- *
+ * 
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU Affero General Public License as published by the Free
  * Software Foundation, either version 3 of the License, or (at your option) any
  * later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
  * details.
- *
+ * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  * Contact Information:
  * Futurecom interactive
  * Hardturmstrasse 133
  * Postfach
  * 8037 Zurich
- *
+ * 
  * www.futurecom.ch
- *
+ * 
  * @author mih
  */
-define([//
+define([ //
 //
-], function() {
+], function()
+{
 
-	var Config = function() {
+	var Config = function()
+	{
 		/*
-		* insert the required access token. you can get a valid access token
-		* here: http://futurecom.ch/instascreen or here:
-		* http://instagram.com/developer/authentication
-		*/
-		//		var accessToken = "515660266.953c6f7.5d365e1c60a14f67938fcc3577a0fad9";
+		 * insert the required access token. you can get a valid access token
+		 * here: http://instascreen.futurecom.ch/accessToken
+		 */
+//		var accessToken = "515660266.953c6f7.5d365e1c60a14f67938fcc3577a0fad9";
 		var accessToken = "414294402.953c6f7.cde2dd40e16b4bafa48812d3abea429e";
 
 		/*-------------------------*/
@@ -46,51 +47,41 @@ define([//
 		var apiURL = "https://api.instagram.com/v1";
 
 		/*
-		* array of api calls
-		*/
-		//var apiCalls = "bla.json";
-		/*
-		 var apiCalls = [
-		 {
-		 "apiEndpoint": "/tags/yrgroup/media/recent",
-		 "maxTagNumber": -1,
-		 "filterTags": [],
-		 "blacklistTags": [],
-		 "geoFenceFilters": []
-		 },
-		 {
-		 "apiEndpoint": "/tags/youngrubicam/media/recent",
-		 "maxTagNumber": -1,
-		 "filterTags": [],
-		 "blacklistTags": [],
-		 "geoFenceFilters": []
-		 },
-		 {
-		 "apiEndpoint": "/tags/youngandrubicam/media/recent",
-		 "maxTagNumber": -1,
-		 "filterTags": [],
-		 "blacklistTags": [],
-		 "geoFenceFilters": []
-		 },
-		 {
-		 "apiEndpoint": "/tags/wunderman/media/recent",
-		 "maxTagNumber": -1,
-		 "filterTags": [],
-		 "blacklistTags": [],
-		 "geoFenceFilters": []
-		 }
-		 ];
+		 * array of api calls
 		 */
+		//var apiCalls = "bla.json";
+		
 		var apiCalls = [
-            {
-		    	 "apiEndpoint": "/tags/mui2013/media/recent",
+		     {
+		    	 "apiEndpoint": "/tags/yrgroup/media/recent",
 		    	 "maxTagNumber": -1,
 		    	 "filterTags": [],
 		    	 "blacklistTags": [],
 		    	 "geoFenceFilters": []
-            }
+			 },
+		     {
+		    	 "apiEndpoint": "/tags/youngrubicam/media/recent",
+		         "maxTagNumber": -1,
+		         "filterTags": [],
+		         "blacklistTags": [],
+		         "geoFenceFilters": []
+		     },
+		     {
+		    	 "apiEndpoint": "/tags/youngandrubicam/media/recent",
+		         "maxTagNumber": -1,
+		         "filterTags": [],
+		         "blacklistTags": [],
+		         "geoFenceFilters": []
+		     },
+		     {
+		    	 "apiEndpoint": "/tags/wunderman/media/recent",
+		         "maxTagNumber": -1,
+		         "filterTags": [],
+		         "blacklistTags": [],
+		         "geoFenceFilters": []
+		     }
 		];
-
+		
 		/*-------------------------*/
 
 		/*
@@ -122,46 +113,54 @@ define([//
 		 * mute sounds from videos default: false
 		 */
 		var muteSound = false;
-
+		
 		/*------------------------------------------------------*/
 
-		var getAccessToken = function() {
+		var getAccessToken = function()
+		{
 			return accessToken;
 		};
 
-		var getApiURL = function() {
+		var getApiURL = function()
+		{
 			return apiURL;
 		};
 
-		var getApiCalls = function() {
+		var getApiCalls = function()
+		{
 			return apiCalls;
 		};
 
 		/*------------------------------------------------------*/
 
-		var getMaxItems = function() {
+		var getMaxItems = function()
+		{
 			return maxItems;
 		};
 
-		var getAnimationInterval = function() {
+		var getAnimationInterval = function()
+		{
 			return animationInterval;
 		};
 
 		/*------------------------------------------------------*/
 
-		var getApiInterval = function() {
+		var getApiInterval = function()
+		{
 			return apiInterval;
 		};
 
 		/*------------------------------------------------------*/
 
-		var getPrioritizeNewItems = function() {
+		var getPrioritizeNewItems = function()
+		{
 			return prioritizeNewItems;
 		};
 
 		/*------------------------------------------------------*/
 
-		var getMuteSound = function() {
+		var getMuteSound = function()
+		{
 			return muteSound;
 		};
 
