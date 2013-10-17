@@ -74,7 +74,6 @@ define([ //
 		var checkForNextFeed = function()
 		{
 			console.log(callId + " of " + Config.getApiCalls().length);
-			console.log(maxItems);
 			
 			//check if any apiCalls are left
 			if (callId < Config.getApiCalls().length)

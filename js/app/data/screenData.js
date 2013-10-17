@@ -25,9 +25,8 @@
  * @author mih
  */
 define([//
-'jquery', //
-'app/config', //
-], function($, Config)
+//
+], function()
 {
 	var ScreenData = function()
 	{
