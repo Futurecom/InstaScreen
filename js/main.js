@@ -27,7 +27,7 @@
  */
 require.config({
 	//version for caching scripts
-	urlArgs: "bust=v-1-0-5",
+	urlArgs: "bust=v-1-0-6",
 	
 	paths: {
         jquery: [
@@ -37,15 +37,15 @@ require.config({
         ],
 
         lodash: [
-             'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/1.3.1/lodash.min',
+             'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.2.1/lodash.min',
              // If the CDN location fails, load from this location
-             'lib/lodash/lodash.min'
+             'lib/lodash/lodash-2.2.1.min'
         ],
         
         tweenMax: [
-             'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min',
+             'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.0/TweenMax.min',
              // If the CDN location fails, load from this location
-             'lib/gsap/1.10.3/TweenMax.min'
+             'lib/gsap/1.11.0/TweenMax.min'
         ],
     },
     
