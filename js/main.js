@@ -37,15 +37,15 @@ require.config({
         ],
 
         lodash: [
-             'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.2.1/lodash.min',
+             'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.3.0/lodash.min',
              // If the CDN location fails, load from this location
-             'lib/lodash/lodash-2.2.1.min'
+             'lib/lodash/lodash-2.3.0.min'
         ],
         
         tweenMax: [
-             'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.0/TweenMax.min',
+             'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.1/TweenMax.min',
              // If the CDN location fails, load from this location
-             'lib/gsap/1.11.0/TweenMax.min'
+             'lib/gsap/1.11.1/TweenMax.min'
         ],
     },
     
