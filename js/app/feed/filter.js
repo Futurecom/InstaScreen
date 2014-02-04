@@ -26,7 +26,7 @@
  */
 define([ //
 'jquery', //
-'app/config', //
+'config', //
 ], function($, Config)
 {
 	var Filter = function()

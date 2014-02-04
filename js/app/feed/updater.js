@@ -25,7 +25,7 @@
  * @author mih
  */
 define([ //
-'app/config', //
+'config', //
 'app/data/itemData', //
 'app/loader/feedLoader', //
 ], function(Config, ItemData, FeedLoader)

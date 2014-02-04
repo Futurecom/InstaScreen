@@ -27,7 +27,7 @@
 define([//
 'jquery', //
 'lodash', //
-'app/config', //
+'config', //
 ], function($, _, Config)
 {
 	var ItemData = function()

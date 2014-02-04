@@ -28,12 +28,12 @@
 define([ //
 'jquery', //
 'tweenMax', //
+'config', //
 'app/app', //
-'app/config', //
 'app/data/screenData', //
 'app/data/itemData', //
 'app/loader/imageLoader', //
-], function( $, TweenMax, App, Config, ScreenData, ItemData, ImageLoader ) {
+], function( $, TweenMax, Config, App, ScreenData, ItemData, ImageLoader ) {
 
     var Viewer = function( ) {
     	

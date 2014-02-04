@@ -27,7 +27,7 @@
 define([//
 'jquery', //
 'tweenMax', //
-'app/config', //
+'config', //
 'app/data/screenData', //
 'app/loader/feedLoader', //
 'app/feed/viewer', //

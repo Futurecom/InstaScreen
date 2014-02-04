@@ -27,7 +27,7 @@
  */
 define([ //
 'jquery', //
-'app/config', //
+'config', //
 'app/data/itemData', //
 'app/feed/filter', //
 ], function($, Config, ItemData, Filter)
