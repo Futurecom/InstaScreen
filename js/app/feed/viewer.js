@@ -71,7 +71,7 @@ define([ //
     		console.log("Viewer.start()");
     		
     		processFeedData();
-    	};
+    	}
     	
     	/*------------------------------------------------------*/
 
@@ -81,23 +81,17 @@ define([ //
 
 			//get items
 			var arrItems = ItemData.getItems();
+			var arrNewItems = ItemData.getNewItems();
 
 			arrImages = [];
 	
 			items = $(".imageWrapper");
 			
-			//check if we have more arrItems than items
-			if(arrItems.length < items.length)
-			{
-				window.setTimeout(start, 10 * 1000);
-				return;
-			}
-			
 			//fill up array
 			while(arrCurrentItems.length < items.length && arrCurrentItems.length < Config.getMaxItems())
 			{
 				//get nextId
-				nextId = counter % Math.min(arrItems.length, Config.getMaxItems());
+				nextId = counter % Config.getMaxItems();
 				
 				//add item to currentItems
 				arrCurrentItems.push(arrItems[nextId]);
@@ -111,23 +105,16 @@ define([ //
 			//get current item
 			currentItem = arrCurrentItems[0];
 
-			//check for prioritizeNewItems flag
-			if(Config.getPrioritizeNewItems())
+			//fill in new items
+			for(var i = 0; i < arrNewItems.length; i++)
 			{
-				//get new items
-				var arrNewItems = ItemData.getNewItems();
+				arrCurrentItems.push(arrNewItems[i]);
 				
-				//fill in new items
-				for(var i = 0; i < arrNewItems.length; i++)
-				{
-					arrCurrentItems.push(arrNewItems[i]);
-					//update counter
-					counter += 1;
-				}
-				
-				//remove new items in Data Class
-				ItemData.removeNewItems();
+				counter += 1;
 			}
+			
+			//remove new items in Data Class
+			ItemData.removeNewItems();
 		
 			console.log("counter: " + counter + ", arrItems: " + arrItems.length + ", arrCurrentItems: " + arrCurrentItems.length);
 			
@@ -144,7 +131,7 @@ define([ //
 			
 			//remove first element of current array
 			arrCurrentItems.shift();
-		};
+		}
 
 		/*------------------------------------------------------*/
 		
@@ -152,7 +139,7 @@ define([ //
 		{
 			var img = arrImages.shift();
 			element.find('img').attr('src', img);
-		};
+		}
 		
 		var getVideo = function(element)
 		{
@@ -164,16 +151,28 @@ define([ //
 				video.attr('src', currentItem.videos.standard_resolution.url);
 				video.attr('muted', Config.getMuteSound());
 				
-				//add video handlers
+
 				video.on('error', videoDone);
 				video.on('abort', videoDone);
 				video.on('ended', videoDone);
+
+				//add video handlers
+				// BUGFIX: http://code.google.com/p/chromium/issues/detail?id=157543
+				// Issue on Chrome/Linux special builds
+				if(navigator.platform.substring(0, 5) == 'Linux')
+				{
+					video.on('timeupdate', function(e) {
+						if(this.duration - this.currentTime < 0.2) {
+							$(this).trigger('ended');
+						}
+					});
+				}
 			}
 			else
 			{
 				videoIsPlaying = false;				
 			}
-		};
+		}
 		
 		var videoDone = function(e)
 		{
@@ -186,11 +185,19 @@ define([ //
 			video.off('abort', videoDone);
 			video.off('ended', videoDone);
 			
+			//remove special bug handler
+			// BUGFIX: http://code.google.com/p/chromium/issues/detail?id=157543
+			// Issue on Chrome/Linux special builds
+			if(navigator.platform.substring(0, 5) == 'Linux')
+			{
+				video.off('timeupdate');
+			}
+			
 			//clear video
 			video.attr('src', "");
 			
 			processFeedData();
-		};
+		}
 		
 		var getName = function(element)
 		{
@@ -198,7 +205,7 @@ define([ //
 
 			element.find('h1').text(currentItem.user.full_name);
 			element.find('span').text(' - @' + currentItem.user.username);
-		};
+		}
 		
 		var getCaption = function(element)
 		{
@@ -219,7 +226,7 @@ define([ //
 			}
 			
 			element.find('span').text(caption);
-		};
+		}
 		
 		/*------------------------------------------------------*/
 		
@@ -282,26 +289,26 @@ define([ //
 			
 			
 			tl.addCallback(refreshTimeout, "+=0");
-		};
+		}
     	
 		/*------------------------------------------------------*/
 		
 		var refreshTimeout = function( )
 		{
 			refreshTimerObj = window.setTimeout(callRefreshTimeout, Config.getAnimationInterval() * 1000);
-		};
+		}
 		
 		var callRefreshTimeout = function( )
 		{
 			if(!videoIsPlaying){
 				processFeedData();
 			}
-		};
+		}
 		
 		var clearRefreshTimeout = function( )
 		{
 			window.clearTimeout(refreshTimerObj);
-		};
+		}
 		
     	/*------------------------------------------------------*/
     	// Return

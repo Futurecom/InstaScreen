@@ -25,27 +25,28 @@
  * 
  * @author mih
  */
+"use strict";
 require.config({
 	//version for caching scripts
-	urlArgs: "bust=v-1-0-6",
+	urlArgs: "bust=v-1-0-7",
 	
 	paths: {
         jquery: [
-             'https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min',
+             'https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min',
              // If the CDN location fails, load from this location
-             'lib/jquery/jquery-2.0.3.min'
+             'lib/jquery/jquery-2.1.0.min'
         ],
 
         lodash: [
-             'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.3.0/lodash.min',
+             'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min',
              // If the CDN location fails, load from this location
-             'lib/lodash/lodash-2.3.0.min'
+             'lib/lodash/lodash-2.4.1.min'
         ],
         
         tweenMax: [
-             'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.1/TweenMax.min',
+             'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/TweenMax.min',
              // If the CDN location fails, load from this location
-             'lib/gsap/1.11.1/TweenMax.min'
+             'lib/gsap/1.11.4/TweenMax.min'
         ],
     },
     
