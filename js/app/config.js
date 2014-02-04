@@ -35,7 +35,6 @@ define([ //
 		 * insert the required access token. you can get a valid access token
 		 * here: http://instascreen.futurecom.ch/accessToken
 		 */
-//		var accessToken = "515660266.953c6f7.5d365e1c60a14f67938fcc3577a0fad9";
 		var accessToken = "414294402.953c6f7.cde2dd40e16b4bafa48812d3abea429e";
 
 		/*-------------------------*/
@@ -53,31 +52,24 @@ define([ //
 		
 		var apiCalls = [
 		     {
+		    	 "apiEndpoint": "/tags/yrexchange14/media/recent",
+		    	 "maxTagNumber": -1,
+		    	 "filterTags": [],
+		    	 "blacklistTags": [],
+		    	 "geoFenceFilters": []
+            },
+            {
 		    	 "apiEndpoint": "/tags/yrgroup/media/recent",
 		    	 "maxTagNumber": -1,
 		    	 "filterTags": [],
 		    	 "blacklistTags": [],
 		    	 "geoFenceFilters": []
-			 },
+			 },		     
 		     {
-		    	 "apiEndpoint": "/tags/youngrubicam/media/recent",
+		    	 "apiEndpoint": "/tags/yrzh/media/recent",
 		         "maxTagNumber": -1,
 		         "filterTags": [],
-		         "blacklistTags": [],
-		         "geoFenceFilters": []
-		     },
-		     {
-		    	 "apiEndpoint": "/tags/youngandrubicam/media/recent",
-		         "maxTagNumber": -1,
-		         "filterTags": [],
-		         "blacklistTags": [],
-		         "geoFenceFilters": []
-		     },
-		     {
-		    	 "apiEndpoint": "/tags/wunderman/media/recent",
-		         "maxTagNumber": -1,
-		         "filterTags": [],
-		         "blacklistTags": [],
+		         "blacklistTags": ["taza"],
 		         "geoFenceFilters": []
 		     }
 		];
@@ -87,13 +79,13 @@ define([ //
 		/*
 		 * max number of items to display before it loops
 		 */
-		var maxItems = 100;
+		var maxItems = 70;
 
 		/*
 		 * display time for items in seconds.
 		 * videos ignore the display time if they are longer
 		 */
-		var animationInterval = 3;
+		var animationInterval = 4;
 
 		/*
 		 * interval time for api calls in seconds
@@ -112,7 +104,7 @@ define([ //
 		/*
 		 * mute sounds from videos default: false
 		 */
-		var muteSound = false;
+		var muteSound = true;
 		
 		/*------------------------------------------------------*/
 
