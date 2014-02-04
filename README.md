@@ -108,6 +108,6 @@ $ lessc -x main.less main.css
 License
 ---------------------
 
-Copyright (c) 2013 Futurecom interactive
+Copyright (c) 2014 Futurecom interactive
 
 Licensed under the [AGPL license](https://github.com/Futurecom/InstaScreen/blob/master/agpl.txt).
