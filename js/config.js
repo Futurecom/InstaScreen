@@ -90,7 +90,7 @@ define([ //
 		/*
 		 * interval time for api calls in seconds
 		 */
-		var apiInterval = 30;
+		var apiInterval = 3600;
 
 		/*-------------------------*/
 
