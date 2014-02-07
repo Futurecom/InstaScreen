@@ -35,7 +35,7 @@ define([ //
 		 * insert the required access token. you can get a valid access token
 		 * here: http://instascreen.futurecom.ch/accessToken
 		 */
-		var accessToken = "414294402.953c6f7.cde2dd40e16b4bafa48812d3abea429e";
+		var accessToken = "1072854992.953c6f7.217c6c1a73dd4ecbbccc66d8c799fdda";
 
 		/*-------------------------*/
 
