@@ -28,7 +28,7 @@
 "use strict";
 require.config({
 	//version for caching scripts
-	urlArgs: "bust=v-1-0-7",
+	urlArgs: "bust=v-1-0-8",
 	
 	paths: {
         jquery: [
@@ -44,9 +44,9 @@ require.config({
         ],
         
         tweenMax: [
-             'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.4/TweenMax.min',
+             'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.5/TweenMax.min',
              // If the CDN location fails, load from this location
-             'lib/gsap/1.11.4/TweenMax.min'
+             'lib/gsap/1.11.5/TweenMax.min'
         ],
     },
     

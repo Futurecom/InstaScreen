@@ -1,12 +1,13 @@
 *{cursor:none}
-BODY{margin:0;font-family:'Open Sans',sans-serif;font-size:2vw;color:#414141;background-color:#000;overflow:hidden}
+BODY{margin:0;font-family:'Open Sans','EmojiSymbols',sans-serif;font-size:2vw;color:#414141;background-color:#000;background-image:url("../images/bg-gradient.png"),url("../images/noise-black.png");background-position:left top;background-repeat:no-repeat,repeat;background-size:100% 100%,auto auto;overflow:hidden}
 IMG{margin:0;display:block}
 VIDEO{margin:0;display:block}
 H1{font-weight:700;display:inline-block;margin:0}
 H2{font-weight:700}
 .namebar *{font-size:3.5vw}
-#loader{position:fixed;top:50%;left:50%;margin-left:-100px;margin-top:-100px;}
-#bodyWrapper{visibility:hidden;background:#000;border:1px #000 solid;margin-top:-1px;margin-right:-1px}
+html,body{height:100%}
+#loader{position:relative;width:100%;height:100%}#loader IMG{margin:auto;position:absolute;top:0;left:0;bottom:0;right:0;max-width:200px;max-height:200px}
+#bodyWrapper{position:absolute;top:0;left:0;background:#000;border:1px #000 solid;margin-top:-1px;margin-right:-1px;visibility:hidden}
 .namebar{font-weight:400;position:relative;display:none;background-color:#f3f3f3;border:1px #000 solid;margin-left:-1px;margin-bottom:-1px}.namebar .innerWrapper{display:table-cell;vertical-align:middle;white-space:nowrap;overflow-x:hidden}
 .namebar .coverUp{position:absolute;top:0;right:0;z-index:999;width:50px;height:100%;background:-moz-linear-gradient(left, rgba(243,243,243,0) 0, #f3f3f3 80%, #f3f3f3 100%);background:-webkit-gradient(linear, left top, right top, color-stop(0, rgba(243,243,243,0)), color-stop(80%, #f3f3f3), color-stop(100%, #f3f3f3));background:-webkit-linear-gradient(left, rgba(243,243,243,0) 0, #f3f3f3 80%, #f3f3f3 100%);background:-o-linear-gradient(left, rgba(243,243,243,0) 0, #f3f3f3 80%, #f3f3f3 100%);background:-ms-linear-gradient(left, rgba(243,243,243,0) 0, #f3f3f3 80%, #f3f3f3 100%);background:linear-gradient(to right, rgba(243,243,243,0) 0, #f3f3f3 80%, #f3f3f3 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(243, 243, 243, 0)', endColorstr='#f3f3f3', GradientType=1);}
 #imageBlock{position:relative;overflow:hidden;background-color:#000}
