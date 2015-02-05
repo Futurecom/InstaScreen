@@ -110,4 +110,4 @@ License
 
 Copyright (c) 2014 Futurecom interactive
 
-Licensed under the [AGPL license](https://github.com/Futurecom/InstaScreen/blob/master/agpl.txt).
+Licensed under the [MIT License](http://opensource.org/licenses/MIT).
